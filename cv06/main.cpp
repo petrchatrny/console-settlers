@@ -65,12 +65,12 @@ class Sklad {
 private:
     std::vector<Floor*> m_floors;
 public:
-    Sklad(Floor* floor) {
-        this->appendFloor(floor);
+    Sklad() {
+        this->m_floors.push_back(new Floor("Floor n.0"));
     }
 
-    void appendFloor(Floor* floor) {
-        this->m_floors.push_back(floor);
+    void appendFloor() {
+        this->m_floors.push_back(new Floor("Floor n." + std::to_string(this->m_floors.size())));
     }
 
     void destroyFloor() {
@@ -78,11 +78,15 @@ public:
     }
 
     void ulozitDoSkladu(int floorIndex, int boxIndex, Box* box) {
-        this->m_floors[floorIndex]->storeBox(box, boxIndex);
+        if(this->m_floors[floorIndex]) {
+            this->m_floors[floorIndex]->storeBox(box, boxIndex);
+        } else std::cout << "[Chyba] Chybne poschodi" << std::endl;
     }
 
     void odebratZeSkladu(int floorIndex, int boxIndex) {
-        this->m_floors[floorIndex]->removeBox(boxIndex);
+        if(this->m_floors[floorIndex]) {
+            this->m_floors[floorIndex]->removeBox(boxIndex);
+        } else std::cout << "[Chyba] Chybne poschodi" << std::endl;
     }
 
     void printSklad() {
@@ -104,9 +108,10 @@ int main() {
 
     Floor* f2 = new Floor("Poschodi2");
     Box* b3 = new Box(12.7, "Lentilky", "Alex");
-    Sklad* sklad = new Sklad(f);
-    sklad->appendFloor(f2);
-    sklad->ulozitDoSkladu(1, 0, b3);
+    Sklad* sklad = new Sklad();
+    sklad->appendFloor();
+    sklad->appendFloor();
+    sklad->ulozitDoSkladu(0, 0, b3);
     sklad->printSklad();
 
     delete f;
