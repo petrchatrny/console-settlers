@@ -1,6 +1,9 @@
 #include <iostream>
+#include "GameEngine.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    GameEngine* hra = new GameEngine();
+    hra->hraj();
+    delete hra;
     return 0;
 }

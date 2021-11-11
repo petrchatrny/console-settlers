@@ -28,6 +28,7 @@ public:
 
     /// Tridy, ktere budou mit potomky by mely mit virt. dest., pak se zavola vzdy destruktor spravneho potomka
     virtual ~HraciPole() {};
+    virtual int vytezitDavkuRudy() = 0;
 };
 
 
