@@ -3,8 +3,22 @@
 #define ZOOPROJ_MAP_H
 
 
-class Map {
+#include <vector>
+#include "Entity.h"
 
+class Map {
+private:
+    int m_size;
+    std::vector<std::vector<Entity *>> m_rows;
+    std::vector<std::vector<Entity *>> generateMap();
+
+public:
+    Map(int size);
+    int getSize();
+    std::vector<std::vector<Entity *>> getRows();
+    void printMap();
+    bool placeEntity(Entity *entity, int coordX, int coordY);
+    bool deleteEntity(Entity *destroyer, int coordX, int coordY);
 };
 
 
