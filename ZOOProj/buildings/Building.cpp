@@ -6,16 +6,22 @@
 
 buildings::Building::Building(int coordX, int coordY, std::string name, std::string appearance)
         : Entity(coordX, coordY, appearance) {
+    m_name = name;
+    m_durability = 100;
 }
 
 std::string buildings::Building::getName() {
-    return std::__cxx11::string();
+    return m_name;
 }
 
 float buildings::Building::getDurability() {
-    return 0;
+    return m_durability;
 }
 
 void buildings::Building::takeDamage(float damage) {
-
+    if (damage > m_durability) {
+        m_durability = 0;
+    } else {
+        m_durability -= damage;
+    }
 }
