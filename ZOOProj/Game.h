@@ -11,7 +11,9 @@ class Game {
 private:
     bool m_gameOver = false;
     GameResult m_gameResult = GameResult::NONE;
+    //TODO Building proceededBuilding;
     World* m_world;
+    //TODO Game instance
     Game();
     ~Game();
     void initializeWorld();
