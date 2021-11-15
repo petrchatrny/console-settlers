@@ -3,8 +3,11 @@
 #define ZOOPROJ_FOREST_H
 
 
-class Forest {
+#include "Terrain.h"
 
+class Forest : protected Terrain {
+public:
+    Forest(int coordX, int coordY);
 };
 
 

@@ -3,8 +3,11 @@
 #define ZOOPROJ_EMPTYTERRAIN_H
 
 
-class EmptyTerrain {
+#include "Terrain.h"
 
+class EmptyTerrain : protected Terrain {
+public:
+    EmptyTerrain(int coordX, int coordY);
 };
 
 

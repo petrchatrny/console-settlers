@@ -3,8 +3,11 @@
 #define ZOOPROJ_SECRETCAVE_H
 
 
-class SecretCave {
+#include "Terrain.h"
 
+class SecretCave : protected Terrain {
+public:
+    SecretCave(int coordX, int coordY);
 };
 
 
