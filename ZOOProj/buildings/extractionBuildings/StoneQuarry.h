@@ -14,7 +14,7 @@ namespace buildings {
      * Every stone quarry can mine mountains and gather stone from them.
      * It can mine only neighbours, nothing else.
      * For each mined mountain, stone amount is increased by 150.
-     * 200 of wood and 100 stone is required for building a lumberjack house.
+     * 200 of wood and 100 stone is required for building a stone quarry.
      */
     class StoneQuarry : public ExtractionBuilding {
         /// amount of gathered stone

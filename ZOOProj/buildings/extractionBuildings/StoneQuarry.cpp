@@ -5,7 +5,7 @@
 #include "StoneQuarry.h"
 
 buildings::StoneQuarry::StoneQuarry(int coordX, int coordY, std::string name)
-        : ExtractionBuilding(coordX, coordY, name, "") {
+        : ExtractionBuilding(coordX, coordY, name, "\U00002692") {
     m_stoneAmount = 0;
 }
 
