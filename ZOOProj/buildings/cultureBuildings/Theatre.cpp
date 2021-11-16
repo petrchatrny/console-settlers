@@ -5,7 +5,7 @@
 #include "Theatre.h"
 
 buildings::Theatre::Theatre(int coordX, int coordY, std::string name)
-        : CultureBuilding(coordX, coordY, name, "", 150) {
+        : CultureBuilding(coordX, coordY, name, "\U0001F3AD", 150) {
 
 }
 
