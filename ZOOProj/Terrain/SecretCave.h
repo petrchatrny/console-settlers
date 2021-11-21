@@ -5,7 +5,7 @@
 
 #include "Terrain.h"
 
-class SecretCave : protected Terrain {
+class SecretCave : public Terrain {
 public:
     SecretCave(int coordX, int coordY);
 };

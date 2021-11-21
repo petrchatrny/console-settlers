@@ -4,8 +4,8 @@
 
 #include "../Entity.h"
 
-class Terrain: protected Entity {
-protected:
+class Terrain: public Entity {
+public:
     Terrain(int coordX, int coordY, std::string appearance);
 };
 

@@ -16,7 +16,7 @@ private:
     //TODO Game instance
     Game();
     ~Game();
-    void initializeWorld();
+    void initializeWorld(std::string title, int size);
     void commandCycle();
     void proceedToBuilding(int coordX, int coordY);
     void printHelp();

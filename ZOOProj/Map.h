@@ -9,13 +9,13 @@
 class Map {
 private:
     int m_size;
-    std::vector<std::vector<Entity *>> m_rows;
-    std::vector<std::vector<Entity *>> generateMap();
+    std::vector<std::vector<Entity *>> m_cells;
+    void generateMap();
 
 public:
     Map(int size);
     int getSize();
-    std::vector<std::vector<Entity *>> getRows();
+    std::vector<std::vector<Entity *>> getCells();
     void printMap();
     bool placeEntity(Entity *entity, int coordX, int coordY);
     bool deleteEntity(Entity *destroyer, int coordX, int coordY);
