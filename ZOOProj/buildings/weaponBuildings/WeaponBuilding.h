@@ -5,7 +5,7 @@
 #ifndef ZOOPROJ_WEAPONBUILDING_H
 #define ZOOPROJ_WEAPONBUILDING_H
 
-#include <buildings/Building.h>
+#include "../Building.h"
 
 namespace buildings {
     /**

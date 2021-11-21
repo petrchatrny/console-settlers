@@ -5,7 +5,7 @@
 #ifndef ZOOPROJ_CULTUREBUILDING_H
 #define ZOOPROJ_CULTUREBUILDING_H
 
-#include <buildings/Building.h>
+#include "../Building.h"
 
 namespace buildings {
     /**

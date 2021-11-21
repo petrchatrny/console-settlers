@@ -5,7 +5,7 @@
 #ifndef ZOOPROJ_BUILDING_H
 #define ZOOPROJ_BUILDING_H
 
-#include <Entity.h>
+#include "../Entity.h"
 
 namespace buildings {
     /**

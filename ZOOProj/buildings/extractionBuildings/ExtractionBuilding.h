@@ -5,7 +5,7 @@
 #ifndef ZOOPROJ_EXTRACTIONBUILDING_H
 #define ZOOPROJ_EXTRACTIONBUILDING_H
 
-#include <buildings/Building.h>
+#include "../Building.h"
 
 namespace buildings {
     /**
