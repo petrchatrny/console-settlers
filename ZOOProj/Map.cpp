@@ -40,5 +40,11 @@ void Map::printMap() {
 }
 
 bool Map::placeEntity(Entity *entity, int coordX, int coordY) {
-    this->m_cells.at(coordX-1).at(coordY-1) = entity;
+    coordX--;
+    coordY--;
+    if(coordX > this->m_cells.size() || coordY > this->m_cells.at(coordX).size() || coordX < 0 || coordY < 0) return false;
+    else {
+        this->m_cells.at(coordX).at(coordY) = entity;
+        return true;
+    }
 }
