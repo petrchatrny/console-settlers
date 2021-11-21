@@ -10,6 +10,6 @@ int Map::getSize() {
     return this->m_size;
 }
 
-std::vector<std::vector<Entity *>> Map::getRows() {
-    return this->m_rows;
+std::vector<std::vector<Entity *>> Map::getCells() {
+    return this->m_cells;
 }
