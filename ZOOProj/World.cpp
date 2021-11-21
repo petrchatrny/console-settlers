@@ -1,7 +1,7 @@
 
 #include "World.h"
 
-World::World(std::string name, int size, int coordX, int coordY) {
+World::World(std::string name, int size) {
     //TODO
     this->m_name = name;
 }

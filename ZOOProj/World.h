@@ -14,7 +14,7 @@ private:
     void invokeAttack(float damage);
 
 public:
-    World(std::string name, int size, int coordX, int coordY);
+    World(std::string name, int size);
     std::string getName();
     Map* getMap();
     void tryToInvokeAttack();
