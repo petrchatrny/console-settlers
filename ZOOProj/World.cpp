@@ -1,17 +1,20 @@
 
 #include <iostream>
 #include "World.h"
-#include "Terrain/EmptyTerrain.h"
+#include "buildings/TownHall.h"
 
 World::World(std::string name, int size) {
     this->m_map = new Map(size);
     this->m_name = name;
     int radniceX, radniceY;
+    bool success = false;
     std::cout << "Zadej souradnice X a Y pro umisteni radnice: ";
-    std::cin >> radniceX;
-    std::cin >> radniceY;
-    //this->m_map->placeEntity(new buildings::TownHall(radniceX, radniceY, "X"), radniceX, radniceY); ??? TownHall weird attr, Buildings protected
-    this->m_map->placeEntity(new EmptyTerrain(radniceX, radniceY), radniceX, radniceY);
+    while(success != true) {
+        std::cin >> radniceX;
+        std::cin >> radniceY;
+        success = this->m_map->placeEntity(new buildings::TownHall(radniceX, radniceY, "Radnice"), radniceX, radniceY);
+        if(success == false) std::cout << "[!] Chybne souradnice, zadej souradnice znovu: ";
+    }
     this->m_map->printMap();
 }
 
