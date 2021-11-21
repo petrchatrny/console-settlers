@@ -10,7 +10,7 @@ class Map {
 private:
     int m_size;
     std::vector<std::vector<Entity *>> m_cells;
-    std::vector<std::vector<Entity *>> generateMap();
+    void generateMap();
 
 public:
     Map(int size);
