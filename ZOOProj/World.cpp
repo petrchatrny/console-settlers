@@ -2,7 +2,7 @@
 #include "World.h"
 
 World::World(std::string name, int size) {
-    //TODO
+    this->m_map = new Map(size);
     this->m_name = name;
 }
 
