@@ -16,7 +16,7 @@ namespace buildings {
      * For each mined mountain, iron amount is increased by 150.
      * 200 of wood and 200 stone and 100 of iron is required for building an iron mine.
      */
-    class IronMine : ExtractionBuilding {
+    class IronMine : public ExtractionBuilding {
         /// amount of gathered iron
         int m_ironAmount;
 

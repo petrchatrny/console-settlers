@@ -15,7 +15,7 @@ namespace buildings {
      * Every theatre raises morale of village by 150.
      * Cost of a theatre is 300 wood.
      */
-    class Theatre : CultureBuilding {
+    class Theatre : public CultureBuilding {
     public:
         /// Constructor for creating new churches
         Theatre(int coordX, int coordY, std::string name);

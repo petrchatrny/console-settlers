@@ -14,7 +14,7 @@ namespace buildings {
      * The class is used by inheritance for other more specific descendants. It is general building with weapons.
      * Weapon buildings raises village's defence to protect itself from attacks.
      */
-    class WeaponBuilding : Building {
+    class WeaponBuilding : public Building {
         /// amount of defence which will be added to village
         int m_defence;
 

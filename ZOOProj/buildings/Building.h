@@ -14,7 +14,7 @@ namespace buildings {
      * The class is used by inheritance for other more specific descendants.
      * It is just a general building.
      */
-    class Building : Entity {
+    class Building : public Entity {
         /// Name of building, which will be displayed in prompt when user will have the building proceeded.
         std::string m_name;
 
