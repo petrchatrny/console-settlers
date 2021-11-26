@@ -4,21 +4,22 @@
 
 
 #include <vector>
-#include "Entity.h"
+#include "Terrain/Terrain.h"
 
 class Map {
 private:
     int m_size;
-    std::vector<std::vector<Entity *>> m_cells;
+    std::vector<std::vector<Terrain *>> m_cells;
     void generateMap();
 
 public:
     Map(int size);
+    ~Map();
     int getSize();
-    std::vector<std::vector<Entity *>> getCells();
     void printMap();
-    bool placeEntity(Entity *entity, int coordX, int coordY);
-    bool deleteEntity(Entity *destroyer, int coordX, int coordY);
+    bool createBuilding(buildings::Coords coords, buildings::Building* building);
+    buildings::Building* getBuilding(buildings::Coords coords);
+    buildings::Resources mineTerrain(buildings::Coords coords, buildings::ExtractionBuilding* miner);
 };
 
 

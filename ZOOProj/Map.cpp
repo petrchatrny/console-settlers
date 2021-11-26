@@ -6,16 +6,20 @@
 
 Map::Map(int size) {
     this->m_size = size;
+    this->m_cells = {};
     this->generateMap();
-    this->printMap();
+}
+
+Map::~Map() {
+    for(std::vector<Terrain*> terrainRow: m_cells) {
+        for(Terrain* terrain: terrainRow) {
+            delete terrain;
+        }
+    }
 }
 
 int Map::getSize() {
     return this->m_size;
-}
-
-std::vector<std::vector<Entity *>> Map::getCells() {
-    return this->m_cells;
 }
 
 void Map::generateMap() {
@@ -39,12 +43,18 @@ void Map::printMap() {
     std::cout << "---------------" << std::endl;
 }
 
-bool Map::placeEntity(Entity *entity, int coordX, int coordY) {
-    coordX--;
-    coordY--;
-    if(coordX > this->m_cells.size() || coordY > this->m_cells.at(coordX).size() || coordX < 0 || coordY < 0) return false;
-    else {
-        this->m_cells.at(coordX).at(coordY) = entity;
+bool Map::createBuilding(buildings::Coords coords, buildings::Building *building) {
+    if(this->m_cells.at(coords.x).at(coords.y)->canCreateBuilding()) {
+        this->m_cells.at(coords.x).at(coords.y)->setBuilding(building);
         return true;
     }
+    return false;
+}
+
+buildings::Building *Map::getBuilding(buildings::Coords coords) {
+    return this->m_cells.at(coords.x).at(coords.y)->getBuilding();
+}
+
+buildings::Resources Map::mineTerrain(buildings::Coords coords, buildings::ExtractionBuilding *miner) {
+    return this->m_cells.at(coords.x).at(coords.y)->beMined(miner);
 }
