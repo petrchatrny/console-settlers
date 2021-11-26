@@ -5,11 +5,13 @@
 
 #include <string>
 #include "Map.h"
+#include "buildings/Building.h"
 
 class World {
 private:
     std::string m_name;
     Map* m_map;
+    buildings::Coords townHallCoords;
     float calculateAttackDamage();
     void invokeAttack(float damage);
 
