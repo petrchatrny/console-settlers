@@ -5,7 +5,7 @@
 #ifndef ZOOPROJ_BUILDING_H
 #define ZOOPROJ_BUILDING_H
 
-#include "../Entity.h"
+#include <string>
 
 namespace buildings {
     /// x and y coordinates
