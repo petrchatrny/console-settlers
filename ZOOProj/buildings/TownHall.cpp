@@ -79,24 +79,35 @@ bool buildings::TownHall::enoughResourcesToBuild(buildings::BuildingType type) {
 }
 
 buildings::BuildingCost buildings::TownHall::getBuildingCost(buildings::BuildingType type) {
+    BuildingCost cost = BuildingCost{};
     switch (type) {
         case HOUSE:
-            return BuildingCost{100, 200, 0};
+            cost = BuildingCost{100, 200, 0};
+            break;
         case COTTAGE:
-            return BuildingCost{150, 0, 0};
+            cost = BuildingCost{150, 0, 0};
+            break;
         case THEATER:
-            return BuildingCost{300, 0, 0};
+            cost = BuildingCost{300, 0, 0};
+            break;
         case CHURCH:
-            return BuildingCost{200, 350, 0};
+            cost = BuildingCost{200, 350, 0};
+            break;
         case SWORD_CRAFT:
-            return BuildingCost{400, 100, 300};
+            cost = BuildingCost{400, 100, 300};
+            break;
         case BOW_CRAFT:
-            return BuildingCost{500, 150, 500};
+            cost = BuildingCost{500, 150, 500};
+            break;
         case LUMBERJACK_HOUSE:
-            return BuildingCost{100, 0, 0};
+            cost = BuildingCost{100, 0, 0};
+            break;
         case STONE_QUARRY:
-            return BuildingCost{150, 100, 0};
+            cost = BuildingCost{150, 100, 0};
+            break;
         case IRON_MINE:
-            return BuildingCost{200, 150, 100};
+            cost = BuildingCost{200, 150, 100};
+            break;
     }
+    return cost;
 }
