@@ -13,6 +13,13 @@
 #include "Building.h"
 
 namespace buildings {
+    /// required resources to create building
+    struct BuildingCost {
+        int requiredWood;
+        int requiredStone;
+        int requiredIron;
+    };
+
     /**
      * @brief A class representing town hall of the village.
      *
@@ -84,6 +91,12 @@ namespace buildings {
          * @return if user has enough resources to create building or not
          */
         bool enoughResourcesToBuild(BuildingType type);
+
+        /**
+         * @param type type of building
+         * @return three numbers (BuildingCost) that represent the required amount of resources to create building
+         */
+        BuildingCost getBuildingCost(BuildingType type);
     };
 }
 

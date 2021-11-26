@@ -73,6 +73,30 @@ void buildings::TownHall::printHelp() {
 }
 
 bool buildings::TownHall::enoughResourcesToBuild(buildings::BuildingType type) {
-    // TODO Petr
-    return false;
+    BuildingCost cost = getBuildingCost(type);
+    return cost.requiredWood >= m_resources.wood && cost.requiredStone >= m_resources.stone &&
+           cost.requiredIron >= m_resources.iron;
+}
+
+buildings::BuildingCost buildings::TownHall::getBuildingCost(buildings::BuildingType type) {
+    switch (type) {
+        case HOUSE:
+            return BuildingCost{100, 200, 0};
+        case COTTAGE:
+            return BuildingCost{150, 0, 0};
+        case THEATER:
+            return BuildingCost{300, 0, 0};
+        case CHURCH:
+            return BuildingCost{200, 350, 0};
+        case SWORD_CRAFT:
+            return BuildingCost{400, 100, 300};
+        case BOW_CRAFT:
+            return BuildingCost{500, 150, 500};
+        case LUMBERJACK_HOUSE:
+            return BuildingCost{100, 0, 0};
+        case STONE_QUARRY:
+            return BuildingCost{150, 100, 0};
+        case IRON_MINE:
+            return BuildingCost{200, 150, 100};
+    }
 }
