@@ -12,9 +12,10 @@ World::World(std::string name, int size) {
     while(success != true) {
         std::cin >> radniceX;
         std::cin >> radniceY;
-        success = this->m_map->placeEntity(new buildings::TownHall(radniceX, radniceY, "Radnice"), radniceX, radniceY);
+        success = this->m_map->createBuilding({radniceX, radniceY}, buildings::TownHall({radniceX, radniceY}, "Radnice")); //!!?
         if(success == false) std::cout << "[!] Chybne souradnice, zadej souradnice znovu: ";
     }
+    this->townHallCoords = {radniceX, radniceY};
     this->m_map->printMap();
 }
 
