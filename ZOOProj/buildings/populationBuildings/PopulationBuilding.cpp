@@ -4,9 +4,8 @@
 
 #include "PopulationBuilding.h"
 
-buildings::PopulationBuilding::PopulationBuilding(int coordX, int coordY, std::string name, std::string appearance,
-                                                  int population)
-        : Building(coordX, coordY, name, appearance) {
+buildings::PopulationBuilding::PopulationBuilding(Coords coords, std::string name, std::string appearance, int population)
+        : Building(coords, name, appearance) {
     m_population = population;
 }
 

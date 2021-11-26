@@ -4,33 +4,35 @@
 
 #include "StoneQuarry.h"
 
-buildings::StoneQuarry::StoneQuarry(int coordX, int coordY, std::string name)
-        : ExtractionBuilding(coordX, coordY, name, "\U00002692") {
-    m_stoneAmount = 0;
-}
-
-int buildings::StoneQuarry::getStoneAmount() {
-    return m_stoneAmount;
-}
-
-int buildings::StoneQuarry::getRequiredWood() {
-    return 200;
-}
-
-int buildings::StoneQuarry::getRequiredStone() {
-    return 100;
-}
-
-int buildings::StoneQuarry::getRequiredIron() {
-    return 0;
+buildings::StoneQuarry::StoneQuarry(Coords coords, std::string name)
+        : ExtractionBuilding(coords, name, "\U00002692", STONE) {
+    m_minedStone = 0;
 }
 
 void buildings::StoneQuarry::executeCommand(int command) {
+    switch (command) {
+        case 0:
+            printHelp();
+            break;
+        case 1:
+            printInfo();
+            break;
+        case 2:
+            mineResources();
+            break;
+        default:
+            break;
+    }
+}
+
+void buildings::StoneQuarry::mineResources() {
     // TODO Petr
 }
 
-void buildings::StoneQuarry::nullifyInventory() {
-    m_stoneAmount = 0;
+buildings::Resources buildings::StoneQuarry::collectMinedResources() {
+    int temp = m_minedStone;
+    m_minedStone = 0;
+    return Resources{0, temp, 0};
 }
 
 void buildings::StoneQuarry::printInfo() {
@@ -39,8 +41,4 @@ void buildings::StoneQuarry::printInfo() {
 
 void buildings::StoneQuarry::printHelp() {
     // TODO Daniil
-}
-
-void buildings::StoneQuarry::mineResources() {
-    // TODO Petr
 }

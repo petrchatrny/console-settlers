@@ -6,16 +6,13 @@
 #define ZOOPROJ_TOWNHALL_H
 
 #include <vector>
+#include <PopulationBuilding.h>
+#include <ExtractionBuilding.h>
+#include <WeaponBuilding.h>
+#include <MoraleBuilding.h>
 #include "Building.h"
 
 namespace buildings {
-    enum BuildingType{
-        HOUSE, COTTAGE,
-        LUMBERJACK_HOUSE, STONE_QUARRY, IRON_MINE,
-        THEATRE, CHURCH,
-        SWORD_CRAFT, BOW_CRAFT
-    };
-
     /**
      * @brief A class representing town hall of the village.
      *
@@ -26,21 +23,24 @@ namespace buildings {
      * This building can also calculate total population, morale and defence.
      */
     class TownHall : public Building {
-        /// Amount of wood currently available for building, set to 100 by default
-        int m_woodAmount;
+        /// Amount of resources currently available in TownHall, set to 100 for each resource type by default
+        Resources m_resources;
 
-        /// Amount of stone currently available for building, set to 100 by default
-        int m_stoneAmount;
+        /// Collection of all built population buildings
+        std::vector<PopulationBuilding *> m_populationBuildings;
 
-        /// Amount of iron currently available for building, set to 100 by default
-        int m_ironAmount;
+        /// Collection of all built morale buildings
+        std::vector<MoraleBuilding*> m_moraleBuildings;
 
-        /// Collection of all built buildings except of town hall
-        std::vector<Building*> m_buildings;
+        /// Collection of all built extraction buildings
+        std::vector<ExtractionBuilding*> m_extractionBuildings;
+
+        /// Collection of all built weapon buildings
+        std::vector<WeaponBuilding*> m_weaponBuildings;
 
     public:
         /// Constructor for building new town hall
-        TownHall(int coordX, int coordY, std::string name);
+        TownHall(Coords coords, std::string name);
 
         /**
          * @brief The method calculates how many inhabitants are in the village in total.
@@ -70,21 +70,20 @@ namespace buildings {
     private:
         /**
          * @brief The method will build a new building if the user has enough resources.
-         *
-         * @param type type of building
-         * @param coordX x coordinate where the building should stand
-         * @param coordY y coordinate where the building should stand
-         * @param name name of building
          */
-        void createNewBuilding(BuildingType type, int coordX, int coordY, std::string name);
+        void createNewBuilding();
 
         /**
          * @brief Method will try to transport resources from extraction building to town hall.
-         *
-         * @param coordX x coordinate of extraction building
-         * @param coordY y coordinate of extraction building
          */
-        void collectResourcesFromExtractionBuilding(int coordX, int coordY);
+        void collectResourcesFromExtractionBuilding();
+
+        /**
+         * @brief Method will check if user has enough resources in town hall for creating specific building
+         * @param type type of building
+         * @return if user has enough resources to create building or not
+         */
+        bool enoughResourcesToBuild(BuildingType type);
     };
 }
 

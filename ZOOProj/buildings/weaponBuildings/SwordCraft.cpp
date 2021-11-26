@@ -4,25 +4,22 @@
 
 #include "SwordCraft.h"
 
-buildings::SwordCraft::SwordCraft(int coordX, int coordY, std::string name)
-        : WeaponBuilding(coordX, coordY, name, "\U00002694", 250) {
+buildings::SwordCraft::SwordCraft(Coords coords, std::string name)
+        : WeaponBuilding(coords, name, "\U00002694", 250) {
     // empty constructor
 }
 
-int buildings::SwordCraft::getRequiredWood() {
-    return 300;
-}
-
-int buildings::SwordCraft::getRequiredStone() {
-    return 200;
-}
-
-int buildings::SwordCraft::getRequiredIron() {
-    return 300;
-}
-
 void buildings::SwordCraft::executeCommand(int command) {
-    // TODO Petr
+    switch (command) {
+        case 0:
+            printHelp();
+            break;
+        case 1:
+            printInfo();
+            break;
+        default:
+            break;
+    }
 }
 
 void buildings::SwordCraft::printInfo() {

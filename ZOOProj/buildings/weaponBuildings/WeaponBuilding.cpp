@@ -4,8 +4,8 @@
 
 #include "WeaponBuilding.h"
 
-buildings::WeaponBuilding::WeaponBuilding(int coordX, int coordY, std::string name, std::string appearance, int defence)
-        : Building(coordX, coordY, name, appearance) {
+buildings::WeaponBuilding::WeaponBuilding(Coords coords, std::string name, std::string appearance, int defence)
+        : Building(coords, name, appearance) {
     m_defence = defence;
 }
 

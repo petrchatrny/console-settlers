@@ -14,39 +14,17 @@ namespace buildings {
      * Every stone quarry can mine mountains and gather stone from them.
      * It can mine only neighbours, nothing else.
      * For each mined mountain, stone amount is increased by 150.
-     * 200 of wood and 100 stone is required for building a stone quarry.
      */
     class StoneQuarry : public ExtractionBuilding {
-        /// amount of gathered stone
-        int m_stoneAmount;
+        /// amount of mined stone
+        int m_minedStone;
     public:
         /// Constructor creating new lumberjack house
-        StoneQuarry(int coordX, int coordY, std::string name);
-
-        /**
-         * @brief Getter
-         * @return amount of gathered stone
-         */
-        int getStoneAmount();
-
-        /**
-         * @return required amount of wood for building a stone quarry
-         */
-        static int getRequiredWood();
-
-        /**
-         * @return required amount of stone for building a stone quarry
-         */
-        static int getRequiredStone();
-
-        /**
-         * @return required amount of iron for building a stone quarry
-         */
-        static int getRequiredIron();
+        StoneQuarry(Coords coords, std::string name);
 
         void executeCommand(int command) override;
 
-        void nullifyInventory() override;
+        Resources collectMinedResources() override;
 
     protected:
         void printInfo() override;

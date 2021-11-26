@@ -5,7 +5,7 @@
 #ifndef ZOOPROJ_POPULATIONBUILDING_H
 #define ZOOPROJ_POPULATIONBUILDING_H
 
-#include <buildings/Building.h>
+#include <Building.h>
 
 namespace buildings {
     /**
@@ -20,7 +20,7 @@ namespace buildings {
 
     protected:
         /// Protected constructor, because class PopulationBuilding is abstract.
-        PopulationBuilding(int coordX, int coordY, std::string name, std::string appearance, int population);
+        PopulationBuilding(Coords coords, std::string name, std::string appearance, int population);
 
     public:
         /**

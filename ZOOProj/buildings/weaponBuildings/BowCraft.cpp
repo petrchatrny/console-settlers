@@ -4,25 +4,22 @@
 
 #include "BowCraft.h"
 
-buildings::BowCraft::BowCraft(int coordX, int coordY, std::string name)
-        : WeaponBuilding(coordX, coordY, name, "\U0001F3F9", 0) {
+buildings::BowCraft::BowCraft(Coords coords, std::string name)
+        : WeaponBuilding(coords, name, "\U0001F3F9", 450) {
     // empty constructor
 }
 
-int buildings::BowCraft::getRequiredWood() {
-    return 500;
-}
-
-int buildings::BowCraft::getRequiredStone() {
-    return 150;
-}
-
-int buildings::BowCraft::getRequiredIron() {
-    return 500;
-}
-
 void buildings::BowCraft::executeCommand(int command) {
-    // TODO Petr
+    switch (command) {
+        case 0:
+            printHelp();
+            break;
+        case 1:
+            printInfo();
+            break;
+        default:
+            break;
+    }
 }
 
 void buildings::BowCraft::printInfo() {

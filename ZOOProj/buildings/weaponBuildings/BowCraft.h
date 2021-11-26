@@ -13,27 +13,11 @@ namespace buildings {
      * @brief A class representing bow craft.
      *
      * Every bow craft raises defence of village by 450.
-     * 500 of wood and 150 stone and 500 of iron is required for building a bow craft.
      */
     class BowCraft : public WeaponBuilding {
     public:
         /// Constructor creating new sword craft
-        BowCraft(int coordX, int coordY, std::string name);
-
-        /**
-         * @return required amount of wood for building a bow craft
-         */
-        static int getRequiredWood();
-
-        /**
-         * @return required amount of stone for building a bow craft
-         */
-        static int getRequiredStone();
-
-        /**
-         * @return required amount of iron for building a bow craft
-         */
-        static int getRequiredIron();
+        BowCraft(Coords coords, std::string name);
 
         void executeCommand(int command) override;
 

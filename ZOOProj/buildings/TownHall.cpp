@@ -4,38 +4,64 @@
 
 #include "TownHall.h"
 
-buildings::TownHall::TownHall(int coordX, int coordY, std::string name)
-        : Building(coordX, coordY, name, "\U0001F3DB") {
-    m_woodAmount = 100;
-    m_stoneAmount = 100;
-    m_ironAmount = 100;
+buildings::TownHall::TownHall(Coords coords, std::string name)
+        : Building(coords, name, "\U0001F3DB") {
+    m_resources = Resources{100, 100, 100};
+    m_populationBuildings = {};
+    m_moraleBuildings = {};
+    m_weaponBuildings = {};
+    m_extractionBuildings = {};
 }
 
 int buildings::TownHall::getTotalPopulation() {
-    // TODO Petr
-    return 0;
+    int sum = 0;
+    for (PopulationBuilding *pb: m_populationBuildings) {
+        sum += pb->getPopulation();
+    }
+    return sum;
 }
 
 int buildings::TownHall::getTotalMorale() {
-    // TODO Petr
-    return 0;
+    int sum = 0;
+    for (MoraleBuilding* mb: m_moraleBuildings) {
+        sum += mb->getMorale();
+    }
+    return sum;
 }
 
 int buildings::TownHall::getTotalDefence() {
-    // TODO Petr
-    return 0;
+    int sum = 0;
+    for (WeaponBuilding* wb: m_weaponBuildings) {
+        sum += wb->getDefence();
+    }
+    return sum;
 }
 
-void buildings::TownHall::createNewBuilding(BuildingType type, int coordX, int coordY, std::string name) {
+void buildings::TownHall::createNewBuilding() {
     // TODO Petr
 }
 
-void buildings::TownHall::collectResourcesFromExtractionBuilding(int coordX, int coordY) {
+void buildings::TownHall::collectResourcesFromExtractionBuilding() {
     // TODO Petr
 }
 
 void buildings::TownHall::executeCommand(int command) {
-    // TODO Petr
+    switch (command) {
+        case 0:
+            printHelp();
+            break;
+        case 1:
+            printInfo();
+            break;
+        case 2:
+            createNewBuilding();
+            break;
+        case 3:
+            collectResourcesFromExtractionBuilding();
+            break;
+        default:
+            break;
+    }
 }
 
 void buildings::TownHall::printInfo() {
@@ -44,4 +70,9 @@ void buildings::TownHall::printInfo() {
 
 void buildings::TownHall::printHelp() {
     // TODO Daniil
+}
+
+bool buildings::TownHall::enoughResourcesToBuild(buildings::BuildingType type) {
+    // TODO Petr
+    return false;
 }

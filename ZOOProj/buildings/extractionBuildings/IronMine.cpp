@@ -4,33 +4,35 @@
 
 #include "IronMine.h"
 
-buildings::IronMine::IronMine(int coordX, int coordY, std::string name)
-        : ExtractionBuilding(coordX, coordY, name, "\U000026CF") {
-    m_ironAmount = 0;
-}
-
-int buildings::IronMine::getIronAmount() {
-    return m_ironAmount;
-}
-
-int buildings::IronMine::getRequiredWood() {
-    return 200;
-}
-
-int buildings::IronMine::getRequiredStone() {
-    return 200;
-}
-
-int buildings::IronMine::getRequiredIron() {
-    return 100;
+buildings::IronMine::IronMine(Coords coords, std::string name)
+        : ExtractionBuilding(coords, name, "\U000026CF", IRON) {
+    m_minedIron = 0;
 }
 
 void buildings::IronMine::executeCommand(int command) {
+    switch (command) {
+        case 0:
+            printHelp();
+            break;
+        case 1:
+            printInfo();
+            break;
+        case 2:
+            mineResources();
+            break;
+        default:
+            break;
+    }
+}
+
+void buildings::IronMine::mineResources() {
     // TODO Petr
 }
 
-void buildings::IronMine::nullifyInventory() {
-    m_ironAmount = 0;
+buildings::Resources buildings::IronMine::collectMinedResources() {
+    int temp = m_minedIron;
+    m_minedIron = 0;
+    return Resources{0, 0, temp};
 }
 
 void buildings::IronMine::printInfo() {
@@ -39,8 +41,4 @@ void buildings::IronMine::printInfo() {
 
 void buildings::IronMine::printHelp() {
     // TODO Daniil
-}
-
-void buildings::IronMine::mineResources() {
-    // TODO Petr
 }

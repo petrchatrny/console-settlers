@@ -14,40 +14,18 @@ namespace buildings {
      * Every iron mine can mine mountains and secret cave and gather iron from them.
      * It can mine only neighbours, nothing else.
      * For each mined mountain, iron amount is increased by 150.
-     * 200 of wood and 200 stone and 100 of iron is required for building an iron mine.
      */
     class IronMine : public ExtractionBuilding {
-        /// amount of gathered iron
-        int m_ironAmount;
+        /// amount of mined iron
+        int m_minedIron;
 
     public:
         /// Constructor creating new lumberjack house
-        IronMine(int coordX, int coordY, std::string name);
-
-        /**
-         * @brief Getter
-         * @return amount of gathered stone
-         */
-        int getIronAmount();
-
-        /**
-         * @return required amount of wood for building an iron mine
-         */
-        static int getRequiredWood();
-
-        /**
-         * @return required amount of stone for building a iron mine
-         */
-        static int getRequiredStone();
-
-        /**
-         * @return required amount of iron for building an iron mine
-         */
-        static int getRequiredIron();
+        IronMine(Coords coords, std::string name);
 
         void executeCommand(int command) override;
 
-        void nullifyInventory() override;
+        Resources collectMinedResources() override;
 
     protected:
         void printInfo() override;

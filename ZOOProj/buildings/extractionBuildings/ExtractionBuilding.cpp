@@ -4,7 +4,13 @@
 
 #include "ExtractionBuilding.h"
 
-buildings::ExtractionBuilding::ExtractionBuilding(int coordX, int coordY, std::string name, std::string appearance)
-        : Building(coordX, coordY, name, appearance) {
-
+buildings::ExtractionBuilding::ExtractionBuilding(Coords coords, std::string name, std::string appearance,
+                                                  ResourceOutputType outputType)
+        : Building(coords, name, appearance) {
+    m_outputType = outputType;
 }
+
+buildings::ResourceOutputType buildings::ExtractionBuilding::getResourceOutputType() {
+    return m_outputType;
+}
+

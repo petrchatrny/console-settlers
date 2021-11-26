@@ -5,25 +5,22 @@
 #include "House.h"
 
 
-buildings::House::House(int coordX, int coordY, std::string name)
-        : PopulationBuilding(coordX, coordY, name, "\U0001F3E2", rand() % 12 + 7) {
+buildings::House::House(Coords coords, std::string name)
+        : PopulationBuilding(coords, name, "\U0001F3E2", rand() % 12 + 7) {
     // empty constructor
 }
 
-int buildings::House::getRequiredWood() {
-    return 100;
-}
-
-int buildings::House::getRequiredStone() {
-    return 200;
-}
-
-int buildings::House::getRequiredIron() {
-    return 0;
-}
-
 void buildings::House::executeCommand(int command) {
-    // TODO Petr
+    switch (command) {
+        case 0:
+            printHelp();
+            break;
+        case 1:
+            printInfo();
+            break;
+        default:
+            break;
+    }
 }
 
 void buildings::House::printInfo() {

@@ -20,7 +20,7 @@ namespace buildings {
 
     protected:
         /// Protected constructor, because class WeaponBuilding is abstract.
-        WeaponBuilding(int coordX, int coordY, std::string name, std::string appearance, int defence);
+        WeaponBuilding(Coords coords, std::string name, std::string appearance, int defence);
 
     public:
         /**
