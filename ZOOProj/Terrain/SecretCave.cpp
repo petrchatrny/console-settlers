@@ -1,4 +1,17 @@
 
 #include "SecretCave.h"
 
-SecretCave::SecretCave(int coordX, int coordY) : Terrain(coordX, coordY, "S") {}
+SecretCave::SecretCave() : Terrain("S") {}
+
+bool SecretCave::canCreateBuilding() {
+    return false;
+}
+
+void SecretCave::setBuilding(buildings::Building *building) {}
+
+buildings::Resources SecretCave::beMined(buildings::ExtractionBuilding *miner) {
+    if(miner->getResourceOutputType() == buildings::IRON) {
+        return buildings::Resources{0, 0, 150};
+    }
+    return buildings::Resources{0, 0, 0};
+}

@@ -7,7 +7,10 @@
 
 class Mountain : public Terrain {
 public:
-    Mountain(int coordX, int coordY);
+    Mountain();
+    buildings::Resources beMined(buildings::ExtractionBuilding* miner) override;
+    bool canCreateBuilding() override;
+    void setBuilding(buildings::Building* building) override;
 };
 
 

@@ -7,7 +7,10 @@
 
 class Forest : public Terrain {
 public:
-    Forest(int coordX, int coordY);
+    Forest();
+    buildings::Resources beMined(buildings::ExtractionBuilding* miner) override;
+    bool canCreateBuilding() override;
+    void setBuilding(buildings::Building* building) override;
 };
 
 

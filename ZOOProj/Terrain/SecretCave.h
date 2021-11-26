@@ -7,7 +7,10 @@
 
 class SecretCave : public Terrain {
 public:
-    SecretCave(int coordX, int coordY);
+    SecretCave();
+    buildings::Resources beMined(buildings::ExtractionBuilding* miner) override;
+    bool canCreateBuilding() override;
+    void setBuilding(buildings::Building* building) override;
 };
 
 

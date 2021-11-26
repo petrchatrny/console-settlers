@@ -7,7 +7,11 @@
 
 class EmptyTerrain : public Terrain {
 public:
-    EmptyTerrain(int coordX, int coordY);
+    EmptyTerrain();
+    buildings::Resources beMined(buildings::ExtractionBuilding* miner) override;
+    bool canCreateBuilding() override;
+    void setBuilding(buildings::Building* building) override;
+    std::string getAppearance() override;
 };
 
 
