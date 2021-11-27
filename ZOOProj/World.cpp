@@ -9,6 +9,7 @@ World::World(std::string name, int size) {
     buildings::TownHall* townHall = nullptr;
     buildings::Coords thCoords = buildings::Coords{};
     bool success = false;
+    this->m_map->printMap();
     std::cout << "Zadej souradnice X a Y pro umisteni radnice: ";
     while(success != true) {
         std::cin >> thCoords.x;
