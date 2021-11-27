@@ -76,12 +76,21 @@ namespace buildings {
 
     private:
         /**
-         * @brief The method will build a new building if the user has enough resources.
+         * @brief The procedure will build a new building.
+         *
+         * Procedure first asks user to choose a building which will be created. Then it if will check if user has
+         * enough resources for this building. If there are enough resources, user will be asked to enter name of the
+         * building and coordinates where building should be created. After that, procedure will try to create building
+         * in map let user know, if his attempt was successful or not.
          */
         void createNewBuilding();
 
         /**
-         * @brief Method will try to transport resources from extraction building to town hall.
+         * @brief Procedure will try to transport resources from extraction building to town hall.
+         *
+         * Procedure first asks user to choose extraction building from which will be resources transported. Then it
+         * will check if that building exists. If it does exist, resources will be transported from that building into
+         * townHall and procedure will also try to invoke attack.
          */
         void collectResourcesFromExtractionBuilding();
 
