@@ -6,10 +6,10 @@
 #define ZOOPROJ_TOWNHALL_H
 
 #include <vector>
-#include <PopulationBuilding.h>
-#include <ExtractionBuilding.h>
-#include <WeaponBuilding.h>
-#include <MoraleBuilding.h>
+#include "populationBuildings/PopulationBuilding.h"
+#include "extractionBuildings/ExtractionBuilding.h"
+#include "weaponBuildings/WeaponBuilding.h"
+#include "moraleBuildings/MoraleBuilding.h"
 #include "Building.h"
 
 namespace buildings {
