@@ -33,3 +33,7 @@ void Game::start() {
             break;
     }
 }
+
+Game *Game::getInstance() {
+    return nullptr;
+}

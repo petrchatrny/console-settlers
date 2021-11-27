@@ -22,7 +22,7 @@ private:
     void printHelp();
 
 public:
-    Game* getInstance();
+    static Game* getInstance();
     World* getWorld();
     void start();
 };
