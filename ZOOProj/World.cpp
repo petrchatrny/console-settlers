@@ -6,16 +6,18 @@
 World::World(std::string name, int size) {
     this->m_map = new Map(size);
     this->m_name = name;
-    int radniceX, radniceY;
+    buildings::TownHall* townHall = nullptr;
+    buildings::Coords thCoords = buildings::Coords{};
     bool success = false;
     std::cout << "Zadej souradnice X a Y pro umisteni radnice: ";
     while(success != true) {
-        std::cin >> radniceX;
-        std::cin >> radniceY;
-        success = this->m_map->createBuilding({radniceX, radniceY}, buildings::TownHall({radniceX, radniceY}, "Radnice")); //!!?
+        std::cin >> thCoords.x;
+        std::cin >> thCoords.y;
+        townHall = new buildings::TownHall(thCoords, "Radnice");
+        success = this->m_map->createBuilding(thCoords, townHall); //!!?
         if(success == false) std::cout << "[!] Chybne souradnice, zadej souradnice znovu: ";
     }
-    this->townHallCoords = {radniceX, radniceY};
+    this->m_townHall = townHall;
     this->m_map->printMap();
 }
 
@@ -25,4 +27,8 @@ std::string World::getName() {
 
 Map *World::getMap() {
     return this->m_map;
+}
+
+buildings::TownHall *World::getTownHall() {
+    return this->m_townHall;
 }
