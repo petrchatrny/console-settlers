@@ -33,3 +33,7 @@ Map *World::getMap() {
 buildings::TownHall *World::getTownHall() {
     return this->m_townHall;
 }
+
+void World::tryToInvokeAttack() {
+
+}
