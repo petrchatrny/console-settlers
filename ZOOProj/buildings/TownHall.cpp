@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include <Game.h>
+#include "../Game.h"
 #include "populationBuildings/House.h"
 #include "populationBuildings/Cottage.h"
 #include "moraleBuildings/Theatre.h"
