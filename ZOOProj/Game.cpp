@@ -2,6 +2,15 @@
 #include <iostream>
 #include "Game.h"
 
+Game* Game::s_instance = 0;
+
+Game::Game() {}
+
+Game::~Game() {
+    delete Game::m_world;
+    delete Game::s_instance;
+}
+
 World *Game::getWorld() {
     return this->m_world;
 }
@@ -35,5 +44,5 @@ void Game::start() {
 }
 
 Game *Game::getInstance() {
-    return nullptr;
+    return Game::s_instance;
 }

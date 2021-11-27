@@ -4,5 +4,6 @@
 int main() {
     Game* game;
     game->start();
+    delete game;
     return 0;
 }
