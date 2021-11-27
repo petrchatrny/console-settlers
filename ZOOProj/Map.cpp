@@ -1,8 +1,13 @@
 
 #include <iostream>
+#include <ctime>
 #include "Map.h"
 #include "Terrain/EmptyTerrain.h"
 #include "Terrain/SecretCave.h"
+#include "buildings/moraleBuildings/Theatre.h"
+#include "buildings/moraleBuildings/Church.h"
+#include "Terrain/Forest.h"
+#include "Terrain/Mountain.h"
 
 Map::Map(int size) {
     this->m_size = size;
@@ -23,10 +28,45 @@ int Map::getSize() {
 }
 
 void Map::generateMap() {
+    srand((unsigned int)time(NULL));
+    bool secretCaveAlready = false;
     this->m_cells.resize(this->m_size);
     for(int i = 0; i < this->m_size; i++) {
         for(int j = 0; j < this->m_size; j++) {
-            this->m_cells.at(i).push_back(new SecretCave(i, j));
+            switch(rand() % 6) {
+                case 0:
+                case 3:
+                    this->m_cells.at(i).push_back(new EmptyTerrain());
+                    break;
+                case 1:
+                case 2:
+                case 4:
+                case 5:
+                    switch(rand() % 3) {
+                        case 0:
+                            this->m_cells.at(i).push_back(new Forest());
+                            break;
+                        case 1:
+                            this->m_cells.at(i).push_back(new Mountain());
+                            break;
+                        case 2:
+                            if(secretCaveAlready) {
+                                switch (rand() % 2) {
+                                    case 0:
+                                        this->m_cells.at(i).push_back(new Forest());
+                                        break;
+                                    case 1:
+                                        this->m_cells.at(i).push_back(new Mountain());
+                                        break;
+                                }
+                            } else {
+                                this->m_cells.at(i).push_back(new SecretCave());
+                                secretCaveAlready = true;
+                            }
+                            break;
+                    }
+                    break;
+            }
         }
     }
 }
