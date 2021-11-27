@@ -46,3 +46,7 @@ void Game::start() {
 Game *Game::getInstance() {
     return Game::s_instance;
 }
+
+void Game::proceedToBuilding(buildings::Coords coords) {
+    this->m_proceededBuilding = this->s_instance->getWorld()->getMap()->getBuilding(coords);
+}

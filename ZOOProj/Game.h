@@ -17,7 +17,7 @@ private:
     Game();
     void initializeWorld(std::string title, int size);
     void commandCycle();
-    void proceedToBuilding(int coordX, int coordY);
+    void proceedToBuilding(buildings::Coords coords);
     void printHelp();
 
 public:
