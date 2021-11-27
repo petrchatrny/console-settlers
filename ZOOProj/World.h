@@ -10,6 +10,7 @@
 
 class World {
 private:
+    int m_attackCounter;
     std::string m_name;
     Map* m_map;
     buildings::TownHall* m_townHall;
