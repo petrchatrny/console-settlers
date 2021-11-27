@@ -16,6 +16,7 @@ namespace buildings {
 
     /// types of buildings
     enum BuildingType {
+        NONE,
         HOUSE, COTTAGE,
         THEATER, CHURCH,
         SWORD_CRAFT, BOW_CRAFT,
@@ -105,6 +106,8 @@ namespace buildings {
          * @param command number value of command, which should be executed
          */
         virtual void executeCommand(int command) = 0;
+
+        static BuildingType convertIntToBuildingType(int value);
     };
 }
 

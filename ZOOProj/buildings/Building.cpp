@@ -30,3 +30,28 @@ float buildings::Building::getDurability() {
 void buildings::Building::takeDamage(float damage) {
     m_durability -= damage;
 }
+
+buildings::BuildingType buildings::Building::convertIntToBuildingType(int value) {
+    switch (value) {
+        case 0:
+            return HOUSE;
+        case 1:
+            return COTTAGE;
+        case 2:
+            return THEATER;
+        case 3:
+            return CHURCH;
+        case 4:
+            return SWORD_CRAFT;
+        case 5:
+            return BOW_CRAFT;
+        case 6:
+            return LUMBERJACK_HOUSE;
+        case 7:
+            return STONE_QUARRY;
+        case 8:
+            return IRON_MINE;
+        default:
+            return NONE;
+    }
+}
