@@ -14,7 +14,7 @@ World::World(std::string name, int size) {
         std::cin >> thCoords.x;
         std::cin >> thCoords.y;
         townHall = new buildings::TownHall(thCoords, "Radnice");
-        success = this->m_map->createBuilding(thCoords, townHall); //!!?
+        success = this->m_map->createBuilding(thCoords, townHall);
         if(success == false) std::cout << "[!] Chybne souradnice, zadej souradnice znovu: ";
     }
     this->m_townHall = townHall;
