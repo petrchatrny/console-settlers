@@ -36,7 +36,8 @@ buildings::Resources buildings::IronMine::collectMinedResources() {
 }
 
 void buildings::IronMine::printInfo() {
-    // TODO Daniil
+    std::cout << "Iron mine{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " <<
+    getName() << ", durability: " << getDurability() << ", mined iron: " << m_minedIron << " }" << std::endl;
 }
 
 void buildings::IronMine::printHelp() {
