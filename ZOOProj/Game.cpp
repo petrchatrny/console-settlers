@@ -31,15 +31,38 @@ void Game::initializeWorld(std::string title, int size) {
     this->m_world = new World(title, size);
 }
 
+void Game::printInfoMessage(std::string message) {
+    std::cout << "[i] " << message << std::endl;
+}
+
+void Game::printInputMessage(std::string message) {
+    if (m_world == nullptr) {
+        std::cout << ":> " << message << std::endl;
+    } else if (m_proceededBuilding == nullptr) {
+        std::cout << ":>" << m_world->getName() << "> " << message << std::endl;
+    } else {
+        std::cout << ":>" << m_world->getName() << ">" << m_proceededBuilding->getName() << "> " << message
+                  << std::endl;
+    }
+}
+
+void Game::printErrorMessage(std::string message) {
+    std::cout << "[!] " << message << std::endl;
+}
+
 void Game::start() {
     std::string title;
-    int worldsize;
-    std::cout << "Zadej nazev sveta: ";
+    int worldSize;
+
+    std::cout << "*** Welcome to the game Console Settler ***" << std::endl;
+
+    printInputMessage("Enter world's name: ");
     std::cin >> title;
-    std::cout << "Zvol velikost sveta (1) 6x6, (2) 8x8, (3) 12x12: ";
-    std::cin >> worldsize;
-    std::cout << std::endl;
-    switch(worldsize) {
+
+    printInputMessage("Pick the size of the world -  6x6 (1); 8x8 (2); 12x12 (3): ");
+    std::cin >> worldSize;
+
+    switch (worldSize) {
         case 1:
             this->initializeWorld(title, 6);
             break;
@@ -50,16 +73,73 @@ void Game::start() {
             this->initializeWorld(title, 12);
             break;
         default:
-            std::cout << "[!] Byla zadana spatna velikost sveta, automaticky zvoleno 6x6" << std::endl;
+            printErrorMessage("The wrong size of the world was entered, game chose 6x6");
+            initializeWorld(title, 6);
             break;
     }
+    commandCycle();
 }
 
 void Game::end(GameResult result) {
     m_gameOver = true;
-    m_gameResult = result;
+    std::cout << "*** Game over ***" << std::endl;
+    switch (result) {
+        case GameResult::WIN:
+            std::cout << "*** Congratulations, you won! ***" << std::endl;
+            break;
+        case GameResult::LOSE:
+            std::cout << "*** Pity, you lost, better luck next time! ***" << std::endl;
+            break;
+        case GameResult::NONE:
+            // for now, it will never happen
+            break;
+    }
+
+    std::cout << "*** Thank you for playing our game! ***" << std::endl;
+    std::cout << "Authors: Petr Chatrný, Martin Weiss, Daniil Astapenko" << std::endl;
 }
 
-void Game::proceedToBuilding(buildings::Coords coords) {
-    this->m_proceededBuilding = this->s_instance->getWorld()->getMap()->getBuilding(coords);
+void Game::commandCycle() {
+    int commandNumber;
+    while (!m_gameOver) {
+        std::cout << std::endl;
+        printInputMessage("Enter command number, for printing help enter 0: ");
+        std::cin >> commandNumber;
+        executeCommand(commandNumber);
+    }
+}
+
+void Game::executeCommand(int command) {
+    if (m_proceededBuilding == nullptr) {
+        switch (command) {
+            case 0:
+                printHelp();
+                break;
+            case 1:
+                m_world->getMap()->printMap();
+                break;
+            case 2:
+                proceedToBuilding();
+                break;
+                // EasterEgg, don't include this to the list of available commands in printHelp()
+            case 66:
+                std::cout << "*** RIP JEDI KNIGHTS ***" << std::endl;
+                break;
+            case 99:
+                end(GameResult::LOSE);
+                break;
+            default:
+                break;
+        }
+    } else {
+        m_proceededBuilding->executeCommand(command);
+    }
+}
+
+void Game::proceedToBuilding() {
+    // TODO Petr
+}
+
+void Game::printHelp() {
+    // TODO Daniil
 }

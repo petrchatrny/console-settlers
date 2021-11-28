@@ -18,7 +18,8 @@ private:
     Game();
     void initializeWorld(std::string title, int size);
     void commandCycle();
-    void proceedToBuilding(buildings::Coords coords);
+    void executeCommand(int command);
+    void proceedToBuilding();
     void printHelp();
 
 public:
@@ -27,6 +28,9 @@ public:
     World* getWorld();
     void start();
     void end(GameResult result);
+    void printInfoMessage(std::string message);
+    void printInputMessage(std::string message);
+    void printErrorMessage(std::string message);
 };
 
 
