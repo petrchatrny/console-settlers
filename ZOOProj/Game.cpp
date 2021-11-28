@@ -89,9 +89,6 @@ void Game::end(GameResult result) {
         case GameResult::LOSE:
             std::cout << "*** Pity, you lost, better luck next time! ***" << std::endl;
             break;
-        case GameResult::NONE:
-            // for now, it will never happen
-            break;
     }
 
     std::cout << "*** Thank you for playing our game! ***" << std::endl;

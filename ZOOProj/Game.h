@@ -5,7 +5,7 @@
 
 #include "World.h"
 
-enum class GameResult {NONE, WIN, LOSE};
+enum class GameResult {WIN, LOSE};
 
 class Game {
 private:
