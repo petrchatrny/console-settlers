@@ -27,5 +27,8 @@ void buildings::Theatre::printInfo() {
 }
 
 void buildings::Theatre::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF THEATRE -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about Theatre" << std::endl;
+    std::cout << "---------------------------" << std::endl;
 }
