@@ -67,6 +67,30 @@ namespace buildings {
          */
         int getTotalDefence();
 
+        /**
+         * @brief Getter
+         * @return vector of built population buildings
+         */
+        std::vector<PopulationBuilding*> getPopulationBuildings();
+
+        /**
+         * @brief Getter
+         * @return vector of built morale buildings
+         */
+        std::vector<MoraleBuilding*> getMoraleBuildings();
+
+        /**
+         * @brief Getter
+         * @return vector of built weapon buildings
+         */
+        std::vector<WeaponBuilding*> getWeaponBuildings();
+
+        /**
+         * @brief Getter
+         * @return vector of built extraction buildings
+         */
+        std::vector<ExtractionBuilding*> getExtractionBuildings();
+
         void executeCommand(int command) override;
 
     protected:

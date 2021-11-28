@@ -286,3 +286,19 @@ buildings::BuildingCost buildings::TownHall::getBuildingCost(buildings::Building
     }
     return cost;
 }
+
+std::vector<buildings::PopulationBuilding *> buildings::TownHall::getPopulationBuildings() {
+    return m_populationBuildings;
+}
+
+std::vector<buildings::MoraleBuilding *> buildings::TownHall::getMoraleBuildings() {
+    return m_moraleBuildings;
+}
+
+std::vector<buildings::WeaponBuilding *> buildings::TownHall::getWeaponBuildings() {
+    return m_weaponBuildings;
+}
+
+std::vector<buildings::ExtractionBuilding *> buildings::TownHall::getExtractionBuildings() {
+    return m_extractionBuildings;
+}
