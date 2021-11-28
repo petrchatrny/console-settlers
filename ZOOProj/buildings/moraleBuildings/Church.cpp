@@ -23,7 +23,8 @@ void buildings::Church::executeCommand(int command) {
 }
 
 void buildings::Church::printInfo() {
-    // TODO Daniil
+    std::cout << "Church{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " <<
+    getName() << ", durability: " << getDurability() << " }" << std::endl;
 }
 
 void buildings::Church::printHelp() {
