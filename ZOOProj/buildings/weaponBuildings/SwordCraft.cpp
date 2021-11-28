@@ -23,7 +23,8 @@ void buildings::SwordCraft::executeCommand(int command) {
 }
 
 void buildings::SwordCraft::printInfo() {
-    // TODO Daniil
+    std::cout << "Sword craft{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " <<
+    getName() << ", durability: " << getDurability() << " }" << std::endl;
 }
 
 void buildings::SwordCraft::printHelp() {
