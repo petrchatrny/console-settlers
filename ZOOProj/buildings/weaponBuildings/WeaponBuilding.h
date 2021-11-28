@@ -6,7 +6,6 @@
 #define ZOOPROJ_WEAPONBUILDING_H
 
 #include "../Building.h"
-#include <iostream>
 
 namespace buildings {
     /**
