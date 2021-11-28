@@ -40,5 +40,9 @@ void buildings::IronMine::printInfo() {
 }
 
 void buildings::IronMine::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF IRON_MINE -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about IronMine" << std::endl;
+    std::cout << "[2] - will mine resources" << std::endl;
+    std::cout << "-----------------------------" << std::endl;
 }
