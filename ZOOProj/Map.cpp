@@ -4,8 +4,6 @@
 #include "Map.h"
 #include "Terrain/EmptyTerrain.h"
 #include "Terrain/SecretCave.h"
-#include "buildings/moraleBuildings/Theatre.h"
-#include "buildings/moraleBuildings/Church.h"
 #include "Terrain/Forest.h"
 #include "Terrain/Mountain.h"
 
@@ -97,6 +95,9 @@ void Map::destroyBuilding(buildings::Coords coords) {
 }
 
 buildings::Building *Map::getBuilding(buildings::Coords coords) {
+    if (coords.x < 0 || coords.y < 0 || coords.x > m_size - 1 || coords.y > m_size - 1) {
+        return nullptr;
+    }
     return this->m_cells.at(coords.x).at(coords.y)->getBuilding();
 }
 

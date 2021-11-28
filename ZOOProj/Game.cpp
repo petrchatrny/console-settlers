@@ -99,7 +99,7 @@ void Game::commandCycle() {
     int commandNumber;
     while (!m_gameOver) {
         std::cout << std::endl;
-        printInputMessage("Enter command number, for printing help enter 0: ");
+        printInputMessage("Enter command number (0 for help): ");
         std::cin >> commandNumber;
         executeCommand(commandNumber);
     }
@@ -135,14 +135,14 @@ void Game::executeCommand(int command) {
 void Game::enterTheBuilding() {
     buildings::Coords coords = buildings::Coords{};
 
-    printInputMessage("Enter coords (x y) of building you want to proceed: ");
+    printInputMessage("Enter coords (x y) of building you want to enter: ");
     std::cin >> coords.x >> coords.y;
 
     m_activeBuilding = m_world->getMap()->getBuilding(coords);
     if (m_activeBuilding == nullptr) {
-        printErrorMessage("Couldn't proceed building at this coords");
+        printErrorMessage("Couldn't enter building at this coords");
     } else {
-        printInfoMessage("Building successfully proceeded");
+        printInfoMessage("Building successfully entered");
     }
 }
 

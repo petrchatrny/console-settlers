@@ -67,6 +67,9 @@ namespace buildings {
         virtual void printHelp() = 0;
 
     public:
+        /// public default destructor
+        virtual ~Building() = default;
+
         /**
          * @brief Getter
          * @return coords of building

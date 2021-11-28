@@ -9,20 +9,28 @@ World::World(std::string name, int size) {
     this->m_map = new Map(size);
     this->m_name = name;
     this->m_attackCounter = 0;
+
     buildings::TownHall* townHall = nullptr;
     buildings::Coords thCoords = buildings::Coords{};
     bool success = false;
+
     this->m_map->printMap();
-    std::cout << "Zadej souradnice X a Y pro umisteni radnice: ";
-    while(success != true) {
+
+    Game::getInstance()->printInputMessage("Enter coordinates for town hall (x y): ");
+    while (!success) {
         std::cin >> thCoords.x;
         std::cin >> thCoords.y;
-        townHall = new buildings::TownHall(thCoords, "Radnice");
+        townHall = new buildings::TownHall(thCoords, "TownHall");
         success = this->m_map->createBuilding(thCoords, townHall);
-        if(success == false) std::cout << "[!] Chybne souradnice, zadej souradnice znovu: ";
+        if (!success) {
+            Game::getInstance()->printErrorMessage("Wrong coordinates entered");
+            Game::getInstance()->printInputMessage("Enter town hall's coordinates again (x y): ");
+        }
     }
+
     this->m_townHall = townHall;
     this->m_map->printMap();
+    Game::getInstance()->printInfoMessage("Town hall successfully built, game begins!");
 }
 
 std::string World::getName() {
@@ -53,7 +61,7 @@ void World::tryToInvokeAttack() {
         }
         if(attack) {
             this->invokeAttack(this->calculateAttackDamage());
-        } else std::cout << "[!] Probehl pokus o utok! Utok se nezdaril!" << std::endl;
+        }
         /*
          * POPULATION  |   MORALE         | TOTAL
          * 20*15 = 300 |   150*0,86 = 129 | 300+129 = 429
