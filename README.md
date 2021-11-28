@@ -10,27 +10,27 @@
 
 ## GAME
 - ### Rules:
-  - player can create buildings only with TownHall
-  - player can create buildings only when there are enough resources in TownHall
-  - player can create buildings only into EmptyTerrain
-  - every building has 100 durability (100 of damage will destroy building) 
-  - player can mine resources from terrain with extraction buildings
-  - for mining resources from the terrain, the right building must be next to the right terrain
-  - LumberjackHouse can mine Forest, StoneQuarry can mine mountains, IronMine can mine moutains and secret cave
-  - after mining are resources stored in inventory of extraction buildings
-  - player must transfer resources from extraction buildings to TownHall for creating new buildings
-  - every transfer of resources can invoke attack of the natives
-  - during the game player must face this attack 3 times
-  - if the town hall is destroyed during any of these attacks, the player loses
-  - every attack is stronger than the previous one and deals more damage
-  - during attack buildings are being damaged in order: WeaponBuildings > ExtractionBuildings > MoraleBuildings > PopulationBuildings > TownHall
-  - higher number of population and morale can delay attack
+    - player can create buildings only with TownHall
+    - player can create buildings only when there are enough resources in TownHall
+    - player can create buildings only into EmptyTerrain
+    - every building has 100 durability (100 of damage will destroy building) 
+    - player can mine resources from terrain with extraction buildings
+    - for mining resources from the terrain, the right building must be next to the right terrain
+    - LumberjackHouse can mine Forest, StoneQuarry can mine mountains, IronMine can mine moutains and secret cave
+    - after mining are resources stored in inventory of extraction buildings
+    - player must transfer resources from extraction buildings to TownHall for creating new buildings
+    - every transfer of resources can invoke attack of the natives
+    - during the game player must face this attack 3 times
+    - if the town hall is destroyed during any of these attacks, the player loses
+    - every attack is stronger than the previous one and deals more damage
+    - during attack buildings are being damaged in order: WeaponBuildings > ExtractionBuildings > MoraleBuildings > PopulationBuildings > TownHall
+    - higher number of population and morale can delay attack
 
 - ### Commands:
-  - **0** - will write all avaible commands of Game
-  - **1** - will print map
-  - **2** - will enter the building, user can now use commands of building but not commands of the game
-  - **99** - will end the game by surrender
+    - **0** - will write all avaible commands of Game
+    - **1** - will print map
+    - **2** - will enter the building, user can now use commands of building but not commands of the game
+    - **99** - will end the game by surrender
 
 
 ## BUILDINGS
