@@ -40,5 +40,9 @@ void buildings::StoneQuarry::printInfo() {
 }
 
 void buildings::StoneQuarry::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF STONE_QUARRY -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about StoneQuarry" << std::endl;
+    std::cout << "[2] - will mine resources" << std::endl;
+    std::cout << "--------------------------------" << std::endl;
 }

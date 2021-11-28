@@ -6,6 +6,7 @@
 #define ZOOPROJ_EXTRACTIONBUILDING_H
 
 #include "../Building.h"
+#include <iostream>
 
 namespace buildings {
     /**
