@@ -7,6 +7,12 @@
 
 enum class GameResult {WIN, LOSE};
 
+enum MessageType {
+    INFO,
+    INPUT,
+    ERROR
+};
+
 class Game {
 private:
     static Game* s_instance;
@@ -28,9 +34,7 @@ public:
     void start();
     void end(GameResult result);
     void quitTheBuilding();
-    void printInfoMessage(std::string message);
-    void printInputMessage(std::string message);
-    void printErrorMessage(std::string message);
+    void printMessage(std::string message, MessageType type);
 };
 
 

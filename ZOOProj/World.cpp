@@ -16,21 +16,21 @@ World::World(std::string name, int size) {
 
     this->m_map->printMap();
 
-    Game::getInstance()->printInputMessage("Enter coordinates for town hall (x y): ");
+    Game::getInstance()->printMessage("Enter coordinates for town hall (x y): ", INPUT);
     while (!success) {
         std::cin >> thCoords.x;
         std::cin >> thCoords.y;
         townHall = new buildings::TownHall(thCoords, "TownHall");
         success = this->m_map->createBuilding(thCoords, townHall);
         if (!success) {
-            Game::getInstance()->printErrorMessage("Wrong coordinates entered");
-            Game::getInstance()->printInputMessage("Enter town hall's coordinates again (x y): ");
+            Game::getInstance()->printMessage("Wrong coordinates entered", ERROR);
+            Game::getInstance()->printMessage("Enter town hall's coordinates again (x y): ", INPUT);
         }
     }
 
     this->m_townHall = townHall;
     this->m_map->printMap();
-    Game::getInstance()->printInfoMessage("Town hall successfully built, game begins!");
+    Game::getInstance()->printMessage("Town hall successfully built, game begins!", INFO);
 }
 
 std::string World::getName() {
@@ -53,7 +53,7 @@ void World::tryToInvokeAttack() {
     srand((unsigned int)time(NULL));
     if(this->m_attackCounter < 3) {
         bool attack = false;
-        double defenseOdds = ((this->getTownHall()->getTotalPopulation()*20)+(this->getTownHall()->getTotalMorale()*0.86))-(600-((rand() % this->m_attackCounter + 1)*162));
+        double defenseOdds = ((m_townHall->getTotalPopulation()*20)+(m_townHall->getTotalMorale()*0.86))-(600-((rand() % this->m_attackCounter + 1)*162));
         if(defenseOdds > 500) {
             if(rand() % 3 == 2) attack = true;
         } else {

@@ -54,8 +54,9 @@ void buildings::TownHall::createNewBuilding() {
     std::string buildingName;
 
     // get buildingType
-    Game::getInstance()->printInputMessage(
-            "Choose type of building to create - House (0); Cottage (1); Theatre (2); Church (3); Sword craft (4); Bow craft (5); Lumberjack house (6); Stone quarry (7); Iron mine (8)");
+    Game::getInstance()->printMessage(
+            "Choose type of building to create - House (0); Cottage (1); Theatre (2); Church (3); Sword craft (4); Bow craft (5); Lumberjack house (6); Stone quarry (7); Iron mine (8)",
+            INPUT);
     std::cin >> buildingTypeCode;
 
     // convert int to BuildingType
@@ -63,16 +64,16 @@ void buildings::TownHall::createNewBuilding() {
 
     // check resources
     if (!enoughResourcesToBuild(buildingType)) {
-        Game::getInstance()->printErrorMessage("You don't have enough resources for creating this building");
+        Game::getInstance()->printMessage("You don't have enough resources for creating this building", ERROR);
         return;
     }
 
     // get building name
-    Game::getInstance()->printInputMessage("Enter building's name: ");
+    Game::getInstance()->printMessage("Enter building's name: ", INPUT);
     std::cin >> buildingName;
 
     // get coords
-    Game::getInstance()->printInputMessage("Enter the coords where you want to build the building (x y): ");
+    Game::getInstance()->printMessage("Enter the coords where you want to build the building (x y): ", INPUT);
     std::cin >> coords.x >> coords.y;
 
     // check coords
@@ -169,14 +170,14 @@ void buildings::TownHall::createNewBuilding() {
             }
             break;
         case NONE:
-            Game::getInstance()->printErrorMessage("You chose wrong building type");
+            Game::getInstance()->printMessage("You chose wrong building type", ERROR);
             success = false;
             break;
     }
 
     // check output of createBuilding()
     if (success) {
-        Game::getInstance()->printInfoMessage("Building created");
+        Game::getInstance()->printMessage("Building created", INFO);
 
         // consume resources
         BuildingCost cost = getBuildingCost(buildingType);
@@ -184,7 +185,7 @@ void buildings::TownHall::createNewBuilding() {
         m_resources.stone -= cost.requiredStone;
         m_resources.iron -= cost.requiredIron;
     } else {
-        Game::getInstance()->printErrorMessage("Couldn't create the building");
+        Game::getInstance()->printMessage("Couldn't create the building", ERROR);
     }
 }
 
@@ -193,8 +194,8 @@ void buildings::TownHall::collectResourcesFromExtractionBuilding() {
     bool success = false;
 
     // get coords
-    Game::getInstance()->printInputMessage(
-            "Enter coords of extraction building from which you want to extract resources (x y):");
+    Game::getInstance()->printMessage(
+            "Enter coords of extraction building from which you want to extract resources (x y):", INPUT);
     std::cin >> coords.x >> coords.y;
 
     // find ExtractionBuilding and collect resources
@@ -209,10 +210,10 @@ void buildings::TownHall::collectResourcesFromExtractionBuilding() {
     }
     // inform user
     if (success) {
-        Game::getInstance()->printInfoMessage("Resources were extracted");
-        Game::getInstance()->getWorld()->tryToInvokeAttack();
+        Game::getInstance()->printMessage("Resources were extracted", INFO);
+        //Game::getInstance()->getWorld()->tryToInvokeAttack();
     } else {
-        Game::getInstance()->printErrorMessage("A mining building with these coordinates could not be found");
+        Game::getInstance()->printMessage("A mining building with these coordinates could not be found", ERROR);
     }
 }
 

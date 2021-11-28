@@ -30,23 +30,25 @@ void Game::initializeWorld(std::string title, int size) {
     this->m_world = new World(title, size);
 }
 
-void Game::printInfoMessage(std::string message) {
-    std::cout << "[i] " << message << std::endl;
-}
-
-void Game::printInputMessage(std::string message) {
-    if (m_world == nullptr) {
-        std::cout << ":> " << message << std::endl;
-    } else if (m_activeBuilding == nullptr) {
-        std::cout << ":>" << m_world->getName() << "> " << message << std::endl;
-    } else {
-        std::cout << ":>" << m_world->getName() << ">" << m_activeBuilding->getName() << "> " << message
-                  << std::endl;
+void Game::printMessage(std::string message, MessageType type) {
+    switch (type) {
+        case INFO:
+            std::cout << "[i] " << message << std::endl;
+            break;
+        case INPUT:
+            if (m_world == nullptr) {
+                std::cout << ":> " << message << std::endl;
+            } else if (m_activeBuilding == nullptr) {
+                std::cout << ":>" << m_world->getName() << "> " << message << std::endl;
+            } else {
+                std::cout << ":>" << m_world->getName() << ">" << m_activeBuilding->getName() << "> " << message
+                          << std::endl;
+            }
+            break;
+        case ERROR:
+            std::cout << "[!] " << message << std::endl;
+            break;
     }
-}
-
-void Game::printErrorMessage(std::string message) {
-    std::cout << "[!] " << message << std::endl;
 }
 
 void Game::start() {
@@ -55,10 +57,10 @@ void Game::start() {
 
     std::cout << "*** Welcome to the game Console Settler ***" << std::endl;
 
-    printInputMessage("Enter world's name: ");
+    printMessage("Enter world's name: ", INPUT);
     std::cin >> title;
 
-    printInputMessage("Pick the size of the world -  6x6 (1); 8x8 (2); 12x12 (3): ");
+    printMessage("Pick the size of the world -  6x6 (1); 8x8 (2); 12x12 (3): ", INPUT);
     std::cin >> worldSize;
 
     switch (worldSize) {
@@ -72,7 +74,7 @@ void Game::start() {
             this->initializeWorld(title, 12);
             break;
         default:
-            printErrorMessage("The wrong size of the world was entered, game chose 6x6");
+            printMessage("The wrong size of the world was entered, game chose 6x6", ERROR);
             initializeWorld(title, 6);
             break;
     }
@@ -99,7 +101,7 @@ void Game::commandCycle() {
     int commandNumber;
     while (!m_gameOver) {
         std::cout << std::endl;
-        printInputMessage("Enter command number (0 for help): ");
+        printMessage("Enter command number (0 for help): ", INPUT);
         std::cin >> commandNumber;
         executeCommand(commandNumber);
     }
@@ -135,14 +137,14 @@ void Game::executeCommand(int command) {
 void Game::enterTheBuilding() {
     buildings::Coords coords = buildings::Coords{};
 
-    printInputMessage("Enter coords (x y) of building you want to enter: ");
+    printMessage("Enter coords (x y) of building you want to enter: ", INPUT);
     std::cin >> coords.x >> coords.y;
 
     m_activeBuilding = m_world->getMap()->getBuilding(coords);
     if (m_activeBuilding == nullptr) {
-        printErrorMessage("Couldn't enter building at this coords");
+        printMessage("Couldn't enter building at this coords", ERROR);
     } else {
-        printInfoMessage("Building successfully entered");
+        printMessage("Building successfully entered", INFO);
     }
 }
 
