@@ -245,7 +245,7 @@ void buildings::TownHall::printHelp() {
     std::cout << "[0] - help" << std::endl;
     std::cout << "[1] - info about TownHall" << std::endl;
     std::cout << "[2] - will create a new building" << std::endl;
-    std::cout << "[3] - will start to extract resources" << std::endl;
+    std::cout << "[3] - will start to collect resources" << std::endl;
     std::cout << "-----------------------------" << std::endl;
 
 }
