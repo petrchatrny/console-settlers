@@ -24,7 +24,9 @@ void buildings::House::executeCommand(int command) {
 }
 
 void buildings::House::printInfo() {
-    // TODO Daniil
+    std::cout << "House{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " << getName() <<
+    ", population: " << getPopulation() << " }" << std::endl;
+
 }
 
 void buildings::House::printHelp() {
