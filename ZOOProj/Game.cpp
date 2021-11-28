@@ -2,13 +2,25 @@
 #include <iostream>
 #include "Game.h"
 
-Game* Game::s_instance = 0;
+Game* Game::s_instance = nullptr;
 
-Game::Game() {}
+Game::Game() {
+    m_gameOver = false;
+    m_gameResult = GameResult::NONE;
+    m_proceededBuilding = nullptr;
+    m_world = nullptr;
+}
 
 Game::~Game() {
     delete Game::m_world;
     delete Game::s_instance;
+}
+
+Game* Game::getInstance() {
+    if (s_instance == nullptr) {
+        s_instance = new Game();
+    }
+    return s_instance;
 }
 
 World *Game::getWorld() {

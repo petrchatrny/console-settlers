@@ -10,10 +10,11 @@ enum class GameResult {NONE, WIN, LOSE};
 class Game {
 private:
     static Game* s_instance;
-    bool m_gameOver = false;
-    GameResult m_gameResult = GameResult::NONE;
+    bool m_gameOver;
+    GameResult m_gameResult;
     buildings::Building* m_proceededBuilding;
     World* m_world;
+
     Game();
     void initializeWorld(std::string title, int size);
     void commandCycle();
