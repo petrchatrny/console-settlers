@@ -237,7 +237,9 @@ void buildings::TownHall::executeCommand(int command) {
 }
 
 void buildings::TownHall::printInfo() {
-    // TODO Daniil
+    std::cout << "Town hall{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " << getName() <<
+    ", durability: " << getDurability() << ", wood: " << m_resources.wood << ", stone: " << m_resources.stone
+    << ", iron: " << m_resources.iron << " }" << std::endl;
 }
 
 void buildings::TownHall::printHelp() {
