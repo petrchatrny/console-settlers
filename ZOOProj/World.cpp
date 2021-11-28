@@ -41,12 +41,8 @@ Map *World::getMap() {
     return this->m_map;
 }
 
-buildings::TownHall *World::getTownHall() {
-    return this->m_townHall;
-}
-
 float World::calculateAttackDamage() {
-    return (2*this->m_attackCounter*1000)-(this->getTownHall()->getTotalDefence());
+    return (2*this->m_attackCounter*1000)-(m_townHall->getTotalDefence());
 }
 
 void World::tryToInvokeAttack() {
@@ -72,18 +68,18 @@ void World::tryToInvokeAttack() {
     }
 }
 
-bool World::dealDamageToGroupOfBuildings(std::vector<buildings::Building*> buildings, float &damage) {
-    for (int i = 0; i < buildings.size(); i++) {
-        if (buildings.at(i)->getDurability() < damage) {
-            damage -= buildings.at(i)->getDurability();
+bool World::dealDamageToGroupOfBuildings(std::vector<buildings::Building*> group, float &damage) {
+    for (int i = 0; i < group.size(); i++) {
+        if (group.at(i)->getDurability() < damage) {
+            damage -= group.at(i)->getDurability();
 
             // remove it from map
-            m_map->destroyBuilding(buildings.at(i)->getCoords());
+            m_map->destroyBuilding(group.at(i)->getCoords());
 
             // remove it from vector
-            buildings.erase(buildings.begin() + i);
+            group.erase(group.begin() + i);
         } else {
-            buildings.at(i)->takeDamage(damage);
+            group.at(i)->takeDamage(damage);
             return true;
         }
     }
