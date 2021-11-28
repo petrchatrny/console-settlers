@@ -101,5 +101,10 @@ buildings::Building *Map::getBuilding(buildings::Coords coords) {
 }
 
 buildings::Resources Map::mineTerrain(buildings::Coords coords, buildings::ExtractionBuilding *miner) {
-    return this->m_cells.at(coords.x).at(coords.y)->beMined(miner);
+    buildings::Resources res = this->m_cells.at(coords.x).at(coords.y)->beMined(miner);
+    if (res.wood != 0 || res.stone != 0 || res.iron != 0) {
+        delete m_cells.at(coords.x).at(coords.y);
+        m_cells.at(coords.x).at(coords.y) = new EmptyTerrain();
+    }
+    return res;
 }

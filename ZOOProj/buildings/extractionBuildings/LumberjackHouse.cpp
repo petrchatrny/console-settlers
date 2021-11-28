@@ -39,7 +39,7 @@ void buildings::LumberjackHouse::mineResources() {
     }
 
     // down
-    if (coords.x + 1 >= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
+    if (coords.x + 1 <= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
         resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x + 1, coords.y}, this));
     }
 
@@ -49,7 +49,7 @@ void buildings::LumberjackHouse::mineResources() {
     }
 
     // right
-    if (coords.y + 1 >= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
+    if (coords.y + 1 <= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
         resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x, coords.y + 1}, this));
     }
 
