@@ -27,5 +27,8 @@ void buildings::Cottage::printInfo() {
 }
 
 void buildings::Cottage::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF COTTAGE -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about Cottage" << std::endl;
+    std::cout << "---------------------------" << std::endl;
 }

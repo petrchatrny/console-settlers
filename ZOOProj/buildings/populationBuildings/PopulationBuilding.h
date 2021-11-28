@@ -6,6 +6,7 @@
 #define ZOOPROJ_POPULATIONBUILDING_H
 
 #include "../Building.h"
+#include <iostream>
 
 namespace buildings {
     /**
