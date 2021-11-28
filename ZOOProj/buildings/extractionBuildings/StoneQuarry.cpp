@@ -2,6 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
+#include <Game.h>
 #include "StoneQuarry.h"
 
 buildings::StoneQuarry::StoneQuarry(Coords coords, std::string name)
@@ -26,7 +27,32 @@ void buildings::StoneQuarry::executeCommand(int command) {
 }
 
 void buildings::StoneQuarry::mineResources() {
-    // TODO Petr
+    Coords coords = getCoords();
+    std::vector<Resources> resources = {};
+
+    // up
+    if (coords.x - 1 >= 0) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x - 1, coords.y}, this));
+    }
+
+    // down
+    if (coords.x + 1 >= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x + 1, coords.y}, this));
+    }
+
+    // left
+    if (coords.y - 1 >= 0) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x, coords.y - 1}, this));
+    }
+
+    // right
+    if (coords.y + 1 >= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x, coords.y + 1}, this));
+    }
+
+    for (Resources res: resources) {
+        m_minedStone += res.stone;
+    }
 }
 
 buildings::Resources buildings::StoneQuarry::collectMinedResources() {

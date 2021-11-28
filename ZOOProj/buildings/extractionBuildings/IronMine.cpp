@@ -2,6 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
+#include <Game.h>
 #include "IronMine.h"
 
 buildings::IronMine::IronMine(Coords coords, std::string name)
@@ -26,7 +27,32 @@ void buildings::IronMine::executeCommand(int command) {
 }
 
 void buildings::IronMine::mineResources() {
-    // TODO Petr
+    Coords coords = getCoords();
+    std::vector<Resources> resources = {};
+
+    // up
+    if (coords.x - 1 >= 0) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x - 1, coords.y}, this));
+    }
+
+    // down
+    if (coords.x + 1 >= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x + 1, coords.y}, this));
+    }
+
+    // left
+    if (coords.y - 1 >= 0) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x, coords.y - 1}, this));
+    }
+
+    // right
+    if (coords.y + 1 >= Game::getInstance()->getWorld()->getMap()->getSize() - 1) {
+        resources.push_back(Game::getInstance()->getWorld()->getMap()->mineTerrain({coords.x, coords.y + 1}, this));
+    }
+
+    for (Resources res: resources) {
+        m_minedIron += res.iron;
+    }
 }
 
 buildings::Resources buildings::IronMine::collectMinedResources() {
