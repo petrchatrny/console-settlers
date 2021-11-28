@@ -27,5 +27,8 @@ void buildings::BowCraft::printInfo() {
 }
 
 void buildings::BowCraft::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF BOW_CRAFT -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about BowCraft" << std::endl;
+    std::cout << "-----------------------------" << std::endl;
 }
