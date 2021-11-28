@@ -40,5 +40,9 @@ void buildings::LumberjackHouse::printInfo() {
 }
 
 void buildings::LumberjackHouse::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF LUMBERJACK_HOUSE -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about LumberjackHouse" << std::endl;
+    std::cout << "[2] - will mine resources" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
 }
