@@ -26,7 +26,7 @@ buildings::TownHall::TownHall(Coords coords, std::string name)
 
 int buildings::TownHall::getTotalPopulation() {
     int sum = 0;
-    for (PopulationBuilding *pb: m_populationBuildings) {
+    for (PopulationBuilding* pb : m_populationBuildings) {
         sum += pb->getPopulation();
     }
     return sum;
@@ -54,10 +54,8 @@ void buildings::TownHall::createNewBuilding() {
     std::string buildingName;
 
     // get buildingType
-    std::cout << std::endl << "[in] Zvolte typ budovy, kterou chcete postavit: " << std::endl;
-    std::cout << "0 - Dum, 1 - Chata, 2 - Divadlo, 3 - Kostel,"
-              << "4 - Vyrobna mecu, 5 - Vyrobna luku, 6 - Drevorubecky dum,"
-              << "7 - Kamenolom, 8 - Zelezny dul" << std::endl;
+    Game::getInstance()->printInputMessage(
+            "Choose type of building to create - House (0); Cottage (1); Theatre (2); Church (3); Sword craft (4); Bow craft (5); Lumberjack house (6); Stone quarry (7); Iron mine (8)");
     std::cin >> buildingTypeCode;
 
     // convert int to BuildingType
@@ -65,16 +63,16 @@ void buildings::TownHall::createNewBuilding() {
 
     // check resources
     if (!enoughResourcesToBuild(buildingType)) {
-        std::cout << "[!] Pro stavbu nemate dostatek surovin!" << std::endl;
+        Game::getInstance()->printErrorMessage("You don't have enough resources for creating this building");
         return;
     }
 
     // get building name
-    std::cout << "[in] Zadejte jmeno budovy: " << std::endl;
+    Game::getInstance()->printInputMessage("Enter building's name: ");
     std::cin >> buildingName;
 
     // get coords
-    std::cout << "[in] Zadejte souradnice (x, y), kde chcete budovu postavit:" << std::endl;
+    Game::getInstance()->printInputMessage("Enter the coords where you want to build the building (x y): ");
     std::cin >> coords.x >> coords.y;
 
     // check coords
@@ -171,14 +169,14 @@ void buildings::TownHall::createNewBuilding() {
             }
             break;
         case NONE:
-            std::cout << "[!] Zvolen spatny typ budovy" << std::endl;
+            Game::getInstance()->printErrorMessage("You chose wrong building type");
             success = false;
             break;
     }
 
     // check output of createBuilding()
     if (success) {
-        std::cout << "[out] Budova vytvorena." << std::endl;
+        Game::getInstance()->printInfoMessage("Building created");
 
         // consume resources
         BuildingCost cost = getBuildingCost(buildingType);
@@ -186,7 +184,7 @@ void buildings::TownHall::createNewBuilding() {
         m_resources.stone -= cost.requiredStone;
         m_resources.iron -= cost.requiredIron;
     } else {
-        std::cout << "[!] Zde nelze postavit budovu!" << std::endl;
+        Game::getInstance()->printErrorMessage("Couldn't create the building");
     }
 }
 
@@ -195,7 +193,8 @@ void buildings::TownHall::collectResourcesFromExtractionBuilding() {
     bool success = false;
 
     // get coords
-    std::cout << "[in] Zadejte souradnice (x, y) tezebni budovy, ze ktere chcete vyjmout suroviny:" << std::endl;
+    Game::getInstance()->printInputMessage(
+            "Enter coords of extraction building from which you want to extract resources (x y):");
     std::cin >> coords.x >> coords.y;
 
     // find ExtractionBuilding and collect resources
@@ -210,10 +209,10 @@ void buildings::TownHall::collectResourcesFromExtractionBuilding() {
     }
     // inform user
     if (success) {
-        std::cout << "[out] Suroviny byly premisteny" << std::endl;
+        Game::getInstance()->printInfoMessage("Resources were extracted");
         Game::getInstance()->getWorld()->tryToInvokeAttack();
     } else {
-        std::cout << "[!] Nepodarilo se najit tezebni budovu s temito souradnicemi." << std::endl;
+        Game::getInstance()->printErrorMessage("A mining building with these coordinates could not be found");
     }
 }
 
