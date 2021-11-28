@@ -65,9 +65,14 @@ buildings::Resources buildings::LumberjackHouse::collectMinedResources() {
 }
 
 void buildings::LumberjackHouse::printInfo() {
-    // TODO Daniil
+    std::cout << "LumberjackHouse{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " <<
+    getName() << ", durability: " << getDurability() << ", mined wood: " << m_minedWood << " }" << std::endl;
 }
 
 void buildings::LumberjackHouse::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF LUMBERJACK_HOUSE -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about LumberjackHouse" << std::endl;
+    std::cout << "[2] - will mine resources" << std::endl;
+    std::cout << "------------------------------------" << std::endl;
 }

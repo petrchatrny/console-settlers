@@ -65,9 +65,14 @@ buildings::Resources buildings::StoneQuarry::collectMinedResources() {
 }
 
 void buildings::StoneQuarry::printInfo() {
-    // TODO Daniil
+    std::cout << "Stone quarry{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " <<
+    getName() << ", durability: " << getDurability() << ", mined stone: " << m_minedStone << " }" << std::endl;
 }
 
 void buildings::StoneQuarry::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF STONE_QUARRY -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about StoneQuarry" << std::endl;
+    std::cout << "[2] - will mine resources" << std::endl;
+    std::cout << "--------------------------------" << std::endl;
 }

@@ -240,11 +240,19 @@ void buildings::TownHall::executeCommand(int command) {
 }
 
 void buildings::TownHall::printInfo() {
-    // TODO Daniil
+    std::cout << "Town hall{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " << getName() <<
+    ", durability: " << getDurability() << ", wood: " << m_resources.wood << ", stone: " << m_resources.stone
+    << ", iron: " << m_resources.iron << " }" << std::endl;
 }
 
 void buildings::TownHall::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF TOWN_HALL -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about TownHall" << std::endl;
+    std::cout << "[2] - will create a new building" << std::endl;
+    std::cout << "[3] - will start to collect resources" << std::endl;
+    std::cout << "-----------------------------" << std::endl;
+
 }
 
 bool buildings::TownHall::enoughResourcesToBuild(buildings::BuildingType type) {

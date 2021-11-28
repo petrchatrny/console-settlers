@@ -27,9 +27,13 @@ void buildings::Theatre::executeCommand(int command) {
 }
 
 void buildings::Theatre::printInfo() {
-    // TODO Daniil
+    std::cout << "Theatre{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " <<
+    getName() << ", durability: " << getDurability() << " }" << std::endl;
 }
 
 void buildings::Theatre::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF THEATRE -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - info about Theatre" << std::endl;
+    std::cout << "---------------------------" << std::endl;
 }
