@@ -23,7 +23,8 @@ void buildings::Cottage::executeCommand(int command) {
 }
 
 void buildings::Cottage::printInfo() {
-    // TODO Daniil
+    std::cout << "Cottage{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " << getName() <<
+    ", durability: " << getDurability() << ", population: " << getPopulation() << " }" << std::endl;
 }
 
 void buildings::Cottage::printHelp() {
