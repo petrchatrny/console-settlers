@@ -91,6 +91,11 @@ bool Map::createBuilding(buildings::Coords coords, buildings::Building *building
     return false;
 }
 
+void Map::destroyBuilding(buildings::Coords coords) {
+    delete m_cells.at(coords.x).at(coords.y)->getBuilding();
+    m_cells.at(coords.x).at(coords.y)->setBuilding(nullptr);
+}
+
 buildings::Building *Map::getBuilding(buildings::Coords coords) {
     return this->m_cells.at(coords.x).at(coords.y)->getBuilding();
 }

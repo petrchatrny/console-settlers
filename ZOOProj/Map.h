@@ -18,6 +18,7 @@ public:
     int getSize();
     void printMap();
     bool createBuilding(buildings::Coords coords, buildings::Building* building);
+    void destroyBuilding(buildings::Coords coords);
     buildings::Building* getBuilding(buildings::Coords coords);
     buildings::Resources mineTerrain(buildings::Coords coords, buildings::ExtractionBuilding* miner);
 };

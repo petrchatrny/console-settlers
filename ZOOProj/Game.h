@@ -26,6 +26,7 @@ public:
     static Game* getInstance();
     World* getWorld();
     void start();
+    void end(GameResult result);
 };
 
 

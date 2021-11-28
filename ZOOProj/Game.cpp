@@ -55,8 +55,9 @@ void Game::start() {
     }
 }
 
-Game *Game::getInstance() {
-    return Game::s_instance;
+void Game::end(GameResult result) {
+    m_gameOver = true;
+    m_gameResult = result;
 }
 
 void Game::proceedToBuilding(buildings::Coords coords) {
