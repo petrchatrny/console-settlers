@@ -2,6 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
+#include <Game.h>
 #include "SwordCraft.h"
 
 buildings::SwordCraft::SwordCraft(Coords coords, std::string name)
@@ -16,6 +17,9 @@ void buildings::SwordCraft::executeCommand(int command) {
             break;
         case 1:
             printInfo();
+            break;
+        case 90:
+            Game::getInstance()->quitTheBuilding();
             break;
         default:
             break;

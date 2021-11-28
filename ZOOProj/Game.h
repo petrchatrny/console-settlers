@@ -11,15 +11,14 @@ class Game {
 private:
     static Game* s_instance;
     bool m_gameOver;
-    GameResult m_gameResult;
-    buildings::Building* m_proceededBuilding;
+    buildings::Building* m_activeBuilding;
     World* m_world;
 
     Game();
     void initializeWorld(std::string title, int size);
     void commandCycle();
     void executeCommand(int command);
-    void proceedToBuilding();
+    void enterTheBuilding();
     void printHelp();
 
 public:
@@ -28,6 +27,7 @@ public:
     World* getWorld();
     void start();
     void end(GameResult result);
+    void quitTheBuilding();
     void printInfoMessage(std::string message);
     void printInputMessage(std::string message);
     void printErrorMessage(std::string message);

@@ -21,6 +21,9 @@ void buildings::StoneQuarry::executeCommand(int command) {
         case 2:
             mineResources();
             break;
+        case 90:
+            Game::getInstance()->quitTheBuilding();
+            break;
         default:
             break;
     }

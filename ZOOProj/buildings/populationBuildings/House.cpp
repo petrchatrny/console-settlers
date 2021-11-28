@@ -2,6 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
+#include <Game.h>
 #include "House.h"
 
 
@@ -17,6 +18,9 @@ void buildings::House::executeCommand(int command) {
             break;
         case 1:
             printInfo();
+            break;
+        case 90:
+            Game::getInstance()->quitTheBuilding();
             break;
         default:
             break;

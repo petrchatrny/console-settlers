@@ -231,6 +231,9 @@ void buildings::TownHall::executeCommand(int command) {
         case 3:
             collectResourcesFromExtractionBuilding();
             break;
+        case 90:
+            Game::getInstance()->quitTheBuilding();
+            break;
         default:
             break;
     }

@@ -6,8 +6,7 @@ Game* Game::s_instance = nullptr;
 
 Game::Game() {
     m_gameOver = false;
-    m_gameResult = GameResult::NONE;
-    m_proceededBuilding = nullptr;
+    m_activeBuilding = nullptr;
     m_world = nullptr;
 }
 
@@ -38,10 +37,10 @@ void Game::printInfoMessage(std::string message) {
 void Game::printInputMessage(std::string message) {
     if (m_world == nullptr) {
         std::cout << ":> " << message << std::endl;
-    } else if (m_proceededBuilding == nullptr) {
+    } else if (m_activeBuilding == nullptr) {
         std::cout << ":>" << m_world->getName() << "> " << message << std::endl;
     } else {
-        std::cout << ":>" << m_world->getName() << ">" << m_proceededBuilding->getName() << "> " << message
+        std::cout << ":>" << m_world->getName() << ">" << m_activeBuilding->getName() << "> " << message
                   << std::endl;
     }
 }
@@ -110,7 +109,7 @@ void Game::commandCycle() {
 }
 
 void Game::executeCommand(int command) {
-    if (m_proceededBuilding == nullptr) {
+    if (m_activeBuilding == nullptr) {
         switch (command) {
             case 0:
                 printHelp();
@@ -119,7 +118,7 @@ void Game::executeCommand(int command) {
                 m_world->getMap()->printMap();
                 break;
             case 2:
-                proceedToBuilding();
+                enterTheBuilding();
                 break;
                 // EasterEgg, don't include this to the list of available commands in printHelp()
             case 66:
@@ -132,12 +131,26 @@ void Game::executeCommand(int command) {
                 break;
         }
     } else {
-        m_proceededBuilding->executeCommand(command);
+        m_activeBuilding->executeCommand(command);
     }
 }
 
-void Game::proceedToBuilding() {
-    // TODO Petr
+void Game::enterTheBuilding() {
+    buildings::Coords coords = buildings::Coords{};
+
+    printInputMessage("Enter coords (x y) of building you want to proceed: ");
+    std::cin >> coords.x >> coords.y;
+
+    m_activeBuilding = m_world->getMap()->getBuilding(coords);
+    if (m_activeBuilding == nullptr) {
+        printErrorMessage("Couldn't proceed building at this coords");
+    } else {
+        printInfoMessage("Building successfully proceeded");
+    }
+}
+
+void Game::quitTheBuilding() {
+    m_activeBuilding = nullptr;
 }
 
 void Game::printHelp() {

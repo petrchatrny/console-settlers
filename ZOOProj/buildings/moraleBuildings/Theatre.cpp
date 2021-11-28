@@ -2,6 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
+#include <Game.h>
 #include "Theatre.h"
 
 buildings::Theatre::Theatre(Coords coords, std::string name)
@@ -16,6 +17,9 @@ void buildings::Theatre::executeCommand(int command) {
             break;
         case 1:
             printInfo();
+            break;
+        case 90:
+            Game::getInstance()->quitTheBuilding();
             break;
         default:
             break;
