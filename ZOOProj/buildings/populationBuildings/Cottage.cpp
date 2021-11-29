@@ -2,7 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
-#include <Game.h>
+#include "../../Game.h"
 #include "Cottage.h"
 
 buildings::Cottage::Cottage(Coords coords, std::string name)

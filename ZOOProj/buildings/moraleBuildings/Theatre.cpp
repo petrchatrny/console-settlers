@@ -2,7 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
-#include <Game.h>
+#include "../../Game.h"
 #include "Theatre.h"
 
 buildings::Theatre::Theatre(Coords coords, std::string name)
