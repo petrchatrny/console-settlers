@@ -49,7 +49,8 @@ void World::tryToInvokeAttack() {
     srand((unsigned int)time(NULL));
     if(this->m_attackCounter < 3) {
         bool attack = false;
-        double defenseOdds = ((m_townHall->getTotalPopulation()*20)+(m_townHall->getTotalMorale()*0.86))-(600-((rand() % this->m_attackCounter + 1)*162));
+        int tempAttackCounter = this->m_attackCounter+1;
+        double defenseOdds = (((m_townHall->getTotalPopulation()+1)*20)+((m_townHall->getTotalMorale()+1)*0.86))-(600-((rand() % tempAttackCounter + 1)*162));
         if(defenseOdds > 500) {
             if(rand() % 3 == 2) attack = true;
         } else {
@@ -58,13 +59,6 @@ void World::tryToInvokeAttack() {
         if(attack) {
             this->invokeAttack(this->calculateAttackDamage());
         }
-        /*
-         * POPULATION  |   MORALE         | TOTAL
-         * 20*15 = 300 |   150*0,86 = 129 | 300+129 = 429
-         * 20*25 = 500 |   450*0,86 = 387 | 500+387 = 887
-         *
-         * 600-((rand() % this->m_attackCounter + 1)*186) | 414 / 228 / 42
-         */
     }
 }
 

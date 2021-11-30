@@ -153,5 +153,10 @@ void Game::quitTheBuilding() {
 }
 
 void Game::printHelp() {
-    // TODO Daniil
+    std::cout << "----- HELP OF THE GAME -----" << std::endl;
+    std::cout << "[0] - help" << std::endl;
+    std::cout << "[1] - will print map" << std::endl;
+    std::cout << "[2] - will enter the building" << std::endl;
+    std::cout << "[99] - will end the game by surrender" << std::endl;
+    std::cout << "----------------------------" << std::endl;
 }

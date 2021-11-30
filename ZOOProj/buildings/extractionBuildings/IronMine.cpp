@@ -2,7 +2,7 @@
 // Created by Petr on 16.11.2021.
 //
 
-#include <Game.h>
+#include "../../Game.h"
 #include "IronMine.h"
 
 buildings::IronMine::IronMine(Coords coords, std::string name)
