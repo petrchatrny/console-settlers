@@ -1,7 +1,7 @@
 
 #include "Forest.h"
 
-Forest::Forest() : Terrain("F") {}
+Forest::Forest() : Terrain("\U0001F332") {}
 
 bool Forest::canCreateBuilding() {
     return false;

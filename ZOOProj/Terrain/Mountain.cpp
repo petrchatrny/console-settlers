@@ -1,7 +1,7 @@
 
 #include "Mountain.h"
 
-Mountain::Mountain() : Terrain("M") {}
+Mountain::Mountain() : Terrain("\U000026F0") {}
 
 bool Mountain::canCreateBuilding() {
     return false;

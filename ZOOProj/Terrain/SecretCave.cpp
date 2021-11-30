@@ -1,7 +1,7 @@
 
 #include "SecretCave.h"
 
-SecretCave::SecretCave() : Terrain("S") {}
+SecretCave::SecretCave() : Terrain("..") {}
 
 bool SecretCave::canCreateBuilding() {
     return false;

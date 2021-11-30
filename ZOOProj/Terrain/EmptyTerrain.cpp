@@ -1,7 +1,7 @@
 
 #include "EmptyTerrain.h"
 
-EmptyTerrain::EmptyTerrain() : Terrain("E") {}
+EmptyTerrain::EmptyTerrain() : Terrain("..") {}
 
 bool EmptyTerrain::canCreateBuilding() {
     return (this->m_building == nullptr);
