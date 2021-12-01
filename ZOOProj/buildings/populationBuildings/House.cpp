@@ -36,5 +36,6 @@ void buildings::House::printHelp() {
     std::cout << "----- HELP OF HOUSE -----" << std::endl;
     std::cout << "[0] - help" << std::endl;
     std::cout << "[1] - info about House" << std::endl;
+    std::cout << "[90] - will exit from the House" << std::endl;
     std::cout << "-------------------------" << std::endl;
 }
