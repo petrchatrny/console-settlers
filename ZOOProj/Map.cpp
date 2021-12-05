@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <ctime>
+#include <map>
 #include "Map.h"
 #include "Terrain/EmptyTerrain.h"
 #include "Terrain/SecretCave.h"
@@ -11,6 +12,12 @@ Map::Map(int size) {
     this->m_size = size;
     this->m_cells = {};
     this->generateMap();
+    std::map<int, std::string> headerMap = {
+            {6, "============================="},
+            {8, "====================================="},
+            {12, "====================================================="}
+    };
+    this->m_mapHeader = headerMap[this->m_size];
 }
 
 Map::~Map() {
@@ -70,15 +77,15 @@ void Map::generateMap() {
 }
 
 void Map::printMap() {
-    std::cout << "---------------" << std::endl;
+    std::cout << this->m_mapHeader << std::endl;
     for(int i = 0; i < this->m_cells.size(); i++) {
-        std::cout << "| ";
+        std::cout << "|\t";
         for(int j = 0; j < this->m_cells.size(); j++) {
-            std::cout << this->m_cells.at(i).at(j)->getAppearance() << " ";
+            std::cout << this->m_cells.at(i).at(j)->getAppearance() << "\t";
         }
         std::cout << "|" << std::endl;
     }
-    std::cout << "---------------" << std::endl;
+    std::cout << this->m_mapHeader << std::endl;
 }
 
 bool Map::createBuilding(buildings::Coords coords, buildings::Building *building) {

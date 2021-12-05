@@ -9,6 +9,7 @@
 class Map {
 private:
     int m_size;
+    std::string m_mapHeader;
     std::vector<std::vector<Terrain *>> m_cells;
     void generateMap();
 
