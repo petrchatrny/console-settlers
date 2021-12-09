@@ -56,6 +56,8 @@ void buildings::IronMine::mineResources() {
     for (Resources res: resources) {
         m_minedIron += res.iron;
     }
+
+    Game::getInstance()->printMessage("Mining done", INFO);
 }
 
 buildings::Resources buildings::IronMine::collectMinedResources() {

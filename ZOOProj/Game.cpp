@@ -33,20 +33,19 @@ void Game::initializeWorld(std::string title, int size) {
 void Game::printMessage(std::string message, MessageType type) {
     switch (type) {
         case INFO:
-            std::cout << "[i] " << message << std::endl;
+            std::cout << std::endl << "[i] " << message << std::endl;
             break;
         case INPUT:
             if (m_world == nullptr) {
-                std::cout << ":> " << message << std::endl;
+                std::cout << ":> " << message;
             } else if (m_activeBuilding == nullptr) {
-                std::cout << ":>" << m_world->getName() << "> " << message << std::endl;
+                std::cout << ":>" << m_world->getName() << "> " << message;
             } else {
-                std::cout << ":>" << m_world->getName() << ">" << m_activeBuilding->getName() << "> " << message
-                          << std::endl;
+                std::cout << ":>" << m_world->getName() << ">" << m_activeBuilding->getName() << "> " << message;
             }
             break;
         case ERROR:
-            std::cout << "[!] " << message << std::endl;
+            std::cout << std::endl << "[!] " << message << std::endl;
             break;
     }
 }
@@ -127,6 +126,7 @@ void Game::executeCommand(int command) {
                 end(GameResult::LOSE);
                 break;
             default:
+                printMessage("WRONG COMMAND", ERROR);
                 break;
         }
     } else {

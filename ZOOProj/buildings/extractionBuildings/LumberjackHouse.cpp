@@ -56,6 +56,8 @@ void buildings::LumberjackHouse::mineResources() {
     for (Resources res: resources) {
         m_minedWood += res.wood;
     }
+
+    Game::getInstance()->printMessage("Mining done", INFO);
 }
 
 buildings::Resources buildings::LumberjackHouse::collectMinedResources() {

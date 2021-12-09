@@ -56,6 +56,8 @@ void buildings::StoneQuarry::mineResources() {
     for (Resources res: resources) {
         m_minedStone += res.stone;
     }
+
+    Game::getInstance()->printMessage("Mining done", INFO);
 }
 
 buildings::Resources buildings::StoneQuarry::collectMinedResources() {

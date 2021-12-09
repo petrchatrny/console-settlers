@@ -57,7 +57,11 @@ void World::tryToInvokeAttack() {
             if(rand() % 2 == 0) attack = true;
         }
         if(attack) {
+            Game::getInstance()->printMessage("Attack of natives begun!", INFO);
             this->invokeAttack(this->calculateAttackDamage());
+            Game::getInstance()->printMessage("End of attack. Natives destroyed some of your buildings.", INFO);
+        } else {
+            Game::getInstance()->printMessage("Natives tried to attack you but failed", INFO);
         }
     }
 }

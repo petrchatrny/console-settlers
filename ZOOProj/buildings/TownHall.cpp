@@ -211,7 +211,7 @@ void buildings::TownHall::collectResourcesFromExtractionBuilding() {
     // inform user
     if (success) {
         Game::getInstance()->printMessage("Resources were extracted", INFO);
-        //Game::getInstance()->getWorld()->tryToInvokeAttack();
+        Game::getInstance()->getWorld()->tryToInvokeAttack();
     } else {
         Game::getInstance()->printMessage("A mining building with these coordinates could not be found", ERROR);
     }
@@ -240,9 +240,9 @@ void buildings::TownHall::executeCommand(int command) {
 }
 
 void buildings::TownHall::printInfo() {
-    std::cout << "Town hall{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " << getName() <<
-    ", durability: " << getDurability() << ", wood: " << m_resources.wood << ", stone: " << m_resources.stone
-    << ", iron: " << m_resources.iron << " }" << std::endl;
+    std::cout << "Town hall{ x: " << getCoords().x << ", y: " << getCoords().y << ", name: " << getName()
+              << ", durability: " << getDurability() << ", wood: " << m_resources.wood << ", stone: "
+              << m_resources.stone << ", iron: " << m_resources.iron << " }" << std::endl;
 }
 
 void buildings::TownHall::printHelp() {
@@ -298,18 +298,34 @@ buildings::BuildingCost buildings::TownHall::getBuildingCost(buildings::Building
     return cost;
 }
 
-std::vector<buildings::PopulationBuilding *> buildings::TownHall::getPopulationBuildings() {
+std::vector<buildings::PopulationBuilding*> buildings::TownHall::getPopulationBuildings() {
     return m_populationBuildings;
 }
 
-std::vector<buildings::MoraleBuilding *> buildings::TownHall::getMoraleBuildings() {
+std::vector<buildings::MoraleBuilding*> buildings::TownHall::getMoraleBuildings() {
     return m_moraleBuildings;
 }
 
-std::vector<buildings::WeaponBuilding *> buildings::TownHall::getWeaponBuildings() {
+std::vector<buildings::WeaponBuilding*> buildings::TownHall::getWeaponBuildings() {
     return m_weaponBuildings;
 }
 
-std::vector<buildings::ExtractionBuilding *> buildings::TownHall::getExtractionBuildings() {
+std::vector<buildings::ExtractionBuilding*> buildings::TownHall::getExtractionBuildings() {
     return m_extractionBuildings;
+}
+
+void buildings::TownHall::destroyBuilding(int index, buildings::BuildingCategory category) {
+    switch (category) {
+        case POPULATION_BUILDING:
+            m_populationBuildings.erase(m_populationBuildings.begin() + index);
+            break;
+        case MORALE_BUILDING:
+            m_moraleBuildings.erase(m_moraleBuildings.begin() + index);
+            break;
+        case EXTRACTION_BUILDING:
+            m_extractionBuildings.erase(m_extractionBuildings.begin() + index);
+            break;
+        case WEAPON_BUILDING:
+            m_weaponBuildings.erase(m_weaponBuildings.begin() + index);
+    }
 }
