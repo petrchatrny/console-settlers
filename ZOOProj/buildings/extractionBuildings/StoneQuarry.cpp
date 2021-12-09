@@ -76,5 +76,6 @@ void buildings::StoneQuarry::printHelp() {
     std::cout << "[0] - help" << std::endl;
     std::cout << "[1] - info about StoneQuarry" << std::endl;
     std::cout << "[2] - will mine resources" << std::endl;
+    std::cout << "[90] - will exit from the StoneQuarry" << std::endl;
     std::cout << "--------------------------------" << std::endl;
 }

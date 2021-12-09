@@ -251,8 +251,8 @@ void buildings::TownHall::printHelp() {
     std::cout << "[1] - info about TownHall" << std::endl;
     std::cout << "[2] - will create a new building" << std::endl;
     std::cout << "[3] - will start to collect resources" << std::endl;
+    std::cout << "[90] - will exit from the Town hall" << std::endl;
     std::cout << "-----------------------------" << std::endl;
-
 }
 
 bool buildings::TownHall::enoughResourcesToBuild(buildings::BuildingType type) {

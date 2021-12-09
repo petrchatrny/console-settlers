@@ -35,5 +35,6 @@ void buildings::Church::printHelp() {
     std::cout << "----- HELP OF CHURCH -----" << std::endl;
     std::cout << "[0] - help" << std::endl;
     std::cout << "[1] - info about Church" << std::endl;
+    std::cout << "[90] - will exit from the Church" << std::endl;
     std::cout << "--------------------------" << std::endl;
 }
