@@ -20,6 +20,14 @@ namespace buildings {
         int requiredIron;
     };
 
+    /// categories of buildings
+    enum BuildingCategory {
+        POPULATION_BUILDING,
+        MORALE_BUILDING,
+        EXTRACTION_BUILDING,
+        WEAPON_BUILDING
+    };
+
     /**
      * @brief A class representing town hall of the village.
      *
@@ -90,6 +98,8 @@ namespace buildings {
          * @return vector of built extraction buildings
          */
         std::vector<ExtractionBuilding*> getExtractionBuildings();
+
+        void destroyBuilding(int index, BuildingCategory category);
 
         void executeCommand(int command) override;
 

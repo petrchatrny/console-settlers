@@ -55,7 +55,7 @@ void buildings::TownHall::createNewBuilding() {
 
     // get buildingType
     Game::getInstance()->printMessage(
-            "Choose type of building to create - House (0); Cottage (1); Theatre (2); Church (3); Sword craft (4); Bow craft (5); Lumberjack house (6); Stone quarry (7); Iron mine (8)",
+            "Choose type of building to create - House (0); Cottage (1); Theatre (2); Church (3); Sword craft (4); Bow craft (5); Lumberjack house (6); Stone quarry (7); Iron mine (8) : ",
             INPUT);
     std::cin >> buildingTypeCode;
 
