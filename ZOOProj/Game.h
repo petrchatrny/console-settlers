@@ -22,6 +22,7 @@ private:
 
     Game();
     void initializeWorld(std::string title, int size);
+    int processInput(std::string input);
     void commandCycle();
     void executeCommand(int command);
     void enterTheBuilding();

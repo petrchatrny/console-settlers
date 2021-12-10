@@ -96,13 +96,38 @@ void Game::end(GameResult result) {
     std::cout << "Authors: Petr Chatrný, Martin Weiss, Daniil Astapenko" << std::endl;
 }
 
+int Game::processInput(std::string input) {
+    bool isCorrect = true;
+    int result = 0;
+    int i = 0;
+    while (i < input.size()) {
+        if (!std::isdigit(input.at(i))) {
+            isCorrect = false;
+        } else {
+            result *= 10;
+            result += input.at(i) - '0';
+        }
+        i++;
+    }
+    if (isCorrect) {
+        return result;
+    }
+    return -1;
+}
+
 void Game::commandCycle() {
-    int commandNumber;
+    std::string input;
     while (!m_gameOver) {
         std::cout << std::endl;
         printMessage("Enter command number (0 for help): ", INPUT);
-        std::cin >> commandNumber;
-        executeCommand(commandNumber);
+        std::cin >> input;
+
+        int command = processInput(input);
+        if (command < 0) {
+            printMessage("Wrong input", ERROR);
+        } else {
+            executeCommand(command);
+        }
     }
 }
 
@@ -126,7 +151,7 @@ void Game::executeCommand(int command) {
                 end(GameResult::LOSE);
                 break;
             default:
-                printMessage("WRONG COMMAND", ERROR);
+                printMessage("Unknown command", ERROR);
                 break;
         }
     } else {
