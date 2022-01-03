@@ -89,9 +89,11 @@ void Map::printMap() {
 }
 
 bool Map::createBuilding(buildings::Coords coords, buildings::Building *building) {
-    if(this->m_cells.at(coords.x).at(coords.y)->canCreateBuilding()) {
-        this->m_cells.at(coords.x).at(coords.y)->setBuilding(building);
-        return true;
+    if(coords.x >= 0 && coords.y >= 0 && coords.x < this->m_size && coords.y < this->m_size) {
+        if(this->m_cells.at(coords.x).at(coords.y)->canCreateBuilding()) {
+            this->m_cells.at(coords.x).at(coords.y)->setBuilding(building);
+            return true;
+        }
     }
     return false;
 }
