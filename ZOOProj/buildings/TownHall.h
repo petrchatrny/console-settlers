@@ -20,14 +20,6 @@ namespace buildings {
         int requiredIron;
     };
 
-    /// categories of buildings
-    enum BuildingCategory {
-        POPULATION_BUILDING,
-        MORALE_BUILDING,
-        EXTRACTION_BUILDING,
-        WEAPON_BUILDING
-    };
-
     /**
      * @brief A class representing town hall of the village.
      *
@@ -77,29 +69,15 @@ namespace buildings {
 
         /**
          * @brief Getter
-         * @return vector of built population buildings
+         * @return vector of buildings in order : weaponBuildings, extractionBuildings, moraleBuildings, populationBuildings
          */
-        std::vector<PopulationBuilding*> getPopulationBuildings();
+        std::vector<Building*> getMergedBuildings();
 
         /**
-         * @brief Getter
-         * @return vector of built morale buildings
+         * @brief The method will try to find building and remove it from townHall's vectors.
+         * @param building pointer of building that should be removed from townHall
          */
-        std::vector<MoraleBuilding*> getMoraleBuildings();
-
-        /**
-         * @brief Getter
-         * @return vector of built weapon buildings
-         */
-        std::vector<WeaponBuilding*> getWeaponBuildings();
-
-        /**
-         * @brief Getter
-         * @return vector of built extraction buildings
-         */
-        std::vector<ExtractionBuilding*> getExtractionBuildings();
-
-        void destroyBuilding(int index, BuildingCategory category);
+        void destroyBuilding(Building* building);
 
         void executeCommand(int command) override;
 
@@ -140,6 +118,17 @@ namespace buildings {
          * @return three numbers (BuildingCost) that represent the required amount of resources to create building
          */
         BuildingCost getBuildingCost(BuildingType type);
+
+        /**
+         * @brief Method will try to find building in vector and if building is found, it will remove building from
+         * vector and update it.
+         * @tparam T generic type
+         * @param building pointer to destroyed building
+         * @param vector vector of buildings
+         * @return bool value if building was found and destroyed
+         */
+        template<typename T>
+        bool destroyBuildingFromBuildingVector(Building* building, std::vector<T> &vector);
     };
 }
 

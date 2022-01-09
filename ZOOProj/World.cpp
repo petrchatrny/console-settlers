@@ -42,7 +42,7 @@ Map *World::getMap() {
 }
 
 float World::calculateAttackDamage() {
-    return (2*this->m_attackCounter*1000)-(m_townHall->getTotalDefence());
+    return (m_attackCounter * 300 + 100)-(m_townHall->getTotalDefence());
 }
 
 void World::tryToInvokeAttack() {
@@ -58,76 +58,54 @@ void World::tryToInvokeAttack() {
         }
         if(attack) {
             Game::getInstance()->printMessage("Attack of natives begun!", INFO);
-            this->invokeAttack(this->calculateAttackDamage());
-            Game::getInstance()->printMessage("End of attack. Natives destroyed some of your buildings.", INFO);
+            float damage = calculateAttackDamage();
+            invokeAttack(damage);
+            Game::getInstance()->printMessage("End of attack. Natives dealt " + std::to_string(damage) + " damage to your buildings." , INFO);
         } else {
             Game::getInstance()->printMessage("Natives tried to attack you but failed", INFO);
         }
     }
 }
 
-bool World::dealDamageToGroupOfBuildings(std::vector<buildings::Building*> group, float &damage) {
-    for (int i = 0; i < group.size(); i++) {
-        if (group.at(i)->getDurability() < damage) {
-            damage -= group.at(i)->getDurability();
+void World::invokeAttack(float damage) {
+    m_attackCounter++;
+    std::vector<buildings::Building *> buildings = m_townHall->getMergedBuildings();
 
-            // remove it from map
-            m_map->destroyBuilding(group.at(i)->getCoords());
+    // remove buildings
+    int i = 0;
+    while (damage > 0 && i < buildings.size()) {
+        if (buildings.at(i)->getDurability() <= damage) {
+            // shrink damage
+            damage -= buildings.at(i)->getDurability();
 
-            // remove it from vector
-            group.erase(group.begin() + i);
+            // remove destroyed building from map
+            m_map->destroyBuilding(buildings.at(i)->getCoords());
+
+            // remove destroyed building from townHall
+            m_townHall->destroyBuilding(buildings.at(i));
+
+            // remove building from main memory
+            delete buildings.at(i);
         } else {
-            group.at(i)->takeDamage(damage);
-            return true;
+            buildings.at(i)->takeDamage(damage);
+        }
+        i++;
+    }
+
+    // check damage depletion after removing buildings
+    if (damage > 0) {
+        // try to destroy TownHall and end the game
+        if (m_townHall->getDurability() <= damage) {
+            Game::getInstance()->end(GameResult::LOSE);
+        } else {
+            m_townHall->takeDamage(damage);
+
+            // check win
+            if (m_attackCounter == 2) {
+                Game::getInstance()->end(GameResult::WIN);
+            }
         }
     }
-    return false;
-}
-
-void World::invokeAttack(float damage) {
-    this->m_attackCounter++;
-    bool damageDepletion;
-    std::vector<buildings::Building *> buildings;
-
-    // destroy Weapon buildings
-    buildings.insert(buildings.end(), m_townHall->getWeaponBuildings().begin(), m_townHall->getWeaponBuildings().end());
-    damageDepletion = dealDamageToGroupOfBuildings(buildings, damage);
-    if (damageDepletion) {
-        return;
-    }
-
-    // destroy Extraction buildings
-    buildings.clear();
-    buildings.insert(buildings.end(), m_townHall->getExtractionBuildings().begin(),
-                     m_townHall->getExtractionBuildings().end());
-    damageDepletion = dealDamageToGroupOfBuildings(buildings, damage);
-    if (damageDepletion) {
-        return;
-    }
-
-    // destroy Morale Buildings
-    buildings.clear();
-    buildings.insert(buildings.end(), m_townHall->getMoraleBuildings().begin(), m_townHall->getMoraleBuildings().end());
-    damageDepletion = dealDamageToGroupOfBuildings(buildings, damage);
-    if (damageDepletion) {
-        return;
-    }
-
-    // destroy Population Buildings
-    buildings.clear();
-    buildings.insert(buildings.end(), m_townHall->getPopulationBuildings().begin(),
-                     m_townHall->getPopulationBuildings().end());
-    damageDepletion = dealDamageToGroupOfBuildings(buildings, damage);
-    if (damageDepletion) {
-        return;
-    }
-
-    // try to destroy TownHall and end the game
-    if (m_townHall->getDurability() <= damage) {
-        Game::getInstance()->end(GameResult::LOSE);
-        return;
-    }
-    m_townHall->takeDamage(damage);
 }
 
 World::~World() {

@@ -99,7 +99,6 @@ bool Map::createBuilding(buildings::Coords coords, buildings::Building *building
 }
 
 void Map::destroyBuilding(buildings::Coords coords) {
-    delete m_cells.at(coords.x).at(coords.y)->getBuilding();
     m_cells.at(coords.x).at(coords.y)->setBuilding(nullptr);
 }
 

@@ -298,34 +298,52 @@ buildings::BuildingCost buildings::TownHall::getBuildingCost(buildings::Building
     return cost;
 }
 
-std::vector<buildings::PopulationBuilding*> buildings::TownHall::getPopulationBuildings() {
-    return m_populationBuildings;
-}
-
-std::vector<buildings::MoraleBuilding*> buildings::TownHall::getMoraleBuildings() {
-    return m_moraleBuildings;
-}
-
-std::vector<buildings::WeaponBuilding*> buildings::TownHall::getWeaponBuildings() {
-    return m_weaponBuildings;
-}
-
-std::vector<buildings::ExtractionBuilding*> buildings::TownHall::getExtractionBuildings() {
-    return m_extractionBuildings;
-}
-
-void buildings::TownHall::destroyBuilding(int index, buildings::BuildingCategory category) {
-    switch (category) {
-        case POPULATION_BUILDING:
-            m_populationBuildings.erase(m_populationBuildings.begin() + index);
-            break;
-        case MORALE_BUILDING:
-            m_moraleBuildings.erase(m_moraleBuildings.begin() + index);
-            break;
-        case EXTRACTION_BUILDING:
-            m_extractionBuildings.erase(m_extractionBuildings.begin() + index);
-            break;
-        case WEAPON_BUILDING:
-            m_weaponBuildings.erase(m_weaponBuildings.begin() + index);
+std::vector<buildings::Building*> buildings::TownHall::getMergedBuildings() {
+    std::vector<Building*> buildings = {};
+    for (buildings::Building* building : m_weaponBuildings) {
+        buildings.push_back(building);
     }
+    for (buildings::Building* building : m_extractionBuildings) {
+        buildings.push_back(building);
+    }
+    for (buildings::Building* building : m_moraleBuildings) {
+        buildings.push_back(building);
+    }
+    for (buildings::Building* building : m_populationBuildings) {
+        buildings.push_back(building);
+    }
+    return buildings;
+}
+
+void buildings::TownHall::destroyBuilding(buildings::Building *building) {
+    bool done = destroyBuildingFromBuildingVector(building, m_weaponBuildings);
+    if (done) {
+        return;
+    }
+
+    done = destroyBuildingFromBuildingVector(building, m_extractionBuildings);
+    if (done) {
+        return;
+    }
+
+    done = destroyBuildingFromBuildingVector(building, m_moraleBuildings);
+    if (done) {
+        return;
+    }
+
+    destroyBuildingFromBuildingVector(building, m_populationBuildings);
+}
+
+template <typename T>
+bool buildings::TownHall::destroyBuildingFromBuildingVector(buildings::Building *building, std::vector<T> &vector) {
+    bool removed = false;
+    int i = 0;
+    while (!removed && i < vector.size()) {
+        if (vector.at(i) == building) {
+            vector.erase(vector.begin() + i);
+            removed = true;
+        }
+        i++;
+    }
+    return removed;
 }

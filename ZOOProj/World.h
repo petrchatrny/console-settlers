@@ -16,7 +16,6 @@ private:
     buildings::TownHall* m_townHall;
     float calculateAttackDamage();
     void invokeAttack(float damage);
-    bool dealDamageToGroupOfBuildings(std::vector<buildings::Building*> group, float &damage);
 
 public:
     World(std::string name, int size);

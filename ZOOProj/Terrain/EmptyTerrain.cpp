@@ -8,7 +8,7 @@ bool EmptyTerrain::canCreateBuilding() {
 }
 
 void EmptyTerrain::setBuilding(buildings::Building *building) {
-    if(this->m_building == nullptr) {
+    if(this->m_building == nullptr || building == nullptr) {
         this->m_building = building;
     }
 }
