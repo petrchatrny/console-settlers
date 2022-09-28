@@ -1,4 +1,4 @@
-# SEMESTRÁLNÍ PRÁCE DO ZOO - CONSOLE SETTLER
+# CONSOLE SETTLER
 
 ## Authors
 - Petr Chatrný
